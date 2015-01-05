@@ -17,12 +17,15 @@ type
     login:string;
     password:string;
     URL:string;
+    url_up:string;//Адрес по которому посылать пользователя
     au:string;
     error:string;
     errorLong:string;
     lastResult:string;
     lastSender:string;
     constructor Create(const Alogin:string='';const APassword:string=''; const AURL:string='');
+    function urlu:string;
+    function urla:string;
     procedure Connected;
     procedure ReConnect;
     function GetVersion: string;
@@ -40,7 +43,7 @@ resourcestring
   StrDisaster='Disaster';
   StrOk='-';
 const
-  StatusT: array [0..6]    of string= (@StrNone ,@StrInformation, @StrWarning, @StrAverage, @StrHigh, @StrDisaster, @StrOk);
+  StatusT: array [0..6]    of string= (StrNone ,StrInformation, StrWarning, StrAverage, StrHigh, StrDisaster, StrOk);
 //StatusHTML: array [0..6] of Integer=($cecece,$d6f6ff      ,$efefcc  ,$ddaaaa  ,$ff8888,$ff0000,$aaffaa);
 //StatusHTML: array [0..6] of Integer=($1F5E1F,$327232      ,$703158  ,$5D1F44  ,$8F3F3F,$762727,$aaffaa);
   StatusHTML: array [0..6] of Integer=($DBDBDB,$D6F6FF      ,$FFF6A5  ,$FFB689  ,$FF9999,$FF3838,$aaffaa);
@@ -72,6 +75,15 @@ var
 implementation
 
 uses httpsend, synautil, SysUtils, windows, Graphics;
+
+resourcestring
+  StrErrorLogin = 'Ошибка соединения с сервером (не верный логин и пароль)';
+  StrErrorConnect = 'Ошибка соединения с сервером';
+  StrErrorConnectOther = 'Ошибка соединения с сервером (нет связи)';
+  StrErrorConnectSum = 'other error';
+  StrErrorConnectOtherSum = 'http ...';
+  StrJSONError = 'Ошибка соединения с сервером (JSON)';
+  StrErrorHttp = 'Ошибка соединения с сервером';
 
 function HttpPostURL(const URL, URLData: string; const Data: TStream): Boolean;
 var
@@ -135,30 +147,30 @@ begin
       jo.AddPair('id', '1');
       lastSender:=jo.ToString;
        if post(jo,jo) then begin
-        if jo.Get('error')<>nil then begin
-          jo:=jo.Get('error').JsonValue as TJSONObject;
+        if jo.Get(SError)<>nil then begin
+          jo:=jo.Get(SError).JsonValue as TJSONObject;
           errorlong:=jo.Get('data').JsonValue.Value;
-          error:='Ошибка соединения с сервером (не верный логин и пароль)';
+          error:=StrErrorLogin;
         end else if jo.Get('result')<>nil then begin
           lastResult:=jo.Get('result').JsonValue.ToString;
           result:=jo.Get('result').JsonValue;
         end else begin
           lastResult:=jo.ToString;
-          errorlong:='other error';
-          error:='Ошибка соединения с сервером';
+          errorlong:=StrErrorConnectSum;
+          error:=StrErrorConnect;
         end
       end else begin
-          errorlong:='http ...';
-          error:='Ошибка соединения с сервером (нет связи)';
+          errorlong:=StrErrorConnectOtherSum;
+          error:=StrErrorConnectOther;
       end;
     except
       on E: EJSONException do begin
         errorlong:=E.Message;
-        error:='Ошибка соединения с сервером (JSON)';
+        error:=StrJSONError;
       end;
       on E: Exception do begin
         errorlong:=E.Message;
-        error:='Ошибка соединения с сервером';
+        error:=StrErrorHttp;
       end;
     end;
   finally
@@ -203,14 +215,14 @@ begin
   jo2:= TJSONObject.Create;
 //  {"jsonrpc":"2.0","method":"trigger.get","params":{"output":["triggerid","description","priority","status","lastchange","description","url","value","comments","error","templateid","type","value_flags","flags"],"filter":{"value":1},"sortfield":"priority","sortorder":"DESC","expandData":"1","expandDescription":"1"},"auth":"96a075c9a26d21114b74f09cd65d1133","id":"1"}
 //  {"triggerid":"13590","description":"Free disk space is less than 20% on volume C:","priority":"1","status":"0","lastchange":"1416839725","url":"","value":"1","comments":"","error":"","templateid":"0","type":"0","flags":"4","hostname":"xBig","host":"xBig","hostid":"10105","value_flags":"0"}
-  ja:=TJSONArray.Create('triggerid','description');
-  ja.Add('priority');
+  ja:=TJSONArray.Create(STriggerId,SDescription);
+  ja.Add(SPriority);
 //  ja.Add('status');
-  ja.Add('lastchange');
+  ja.Add(SLastchange);
 //  ja.Add('url');
 //  ja.Add('value');
-  ja.Add('comments');
-  ja.Add('error');
+  ja.Add(SComments);
+  ja.Add(SError);
 //  ja.Add('type');
 //  ja.Add('value_flags');
 //  ja.Add('flags');
@@ -218,8 +230,8 @@ begin
 //  ja.Add('hostid');
   jo2.AddPair('output',ja);
   jo2.AddPair('filter',TJSONObject.Create( TJSONPair.Create('value', TJSONNumber.Create(1))));
-  jo2.AddPair('sortfield','priority');
-  jo2.AddPair('sortorder','DESC');
+  jo2.AddPair('sortfield',SPriority);
+  jo2.AddPair('sortorder','ASC');
   jo2.AddPair('expandData','1');
   jo2.AddPair('expandDescription','1');
   jo2.AddPair('expandComment','1');
@@ -256,6 +268,18 @@ begin
   else FConnect := false;
 end;
 
+function TZt.urla: string;
+begin
+  result:=url+'api_jsonrpc.php';
+end;
+
+function TZt.urlu: string;
+begin
+  if url_up<>''
+  then result:=url_up
+  else result:=url;
+end;
+
 function TZt.post(const ji: TJSONObject; var jo: TJSONObject): boolean;
 var
 //  Data:TMemoryStream;
@@ -263,7 +287,7 @@ var
 begin
 //  Data:=TMemoryStream.Create;
   Data:=TStringStream.Create('');
-  Result:= HttpPostURL(url,ji.ToJSON,Data);
+  Result:= HttpPostURL(urla,ji.ToJSON,Data);
   if Result then begin
     Data.Position:=0;
     jo:=TJSONObject.ParseJSONValue(Data.DataString) as TJSONObject;
