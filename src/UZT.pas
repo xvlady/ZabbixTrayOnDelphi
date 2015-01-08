@@ -2,7 +2,7 @@ unit UZT;
 
 interface
 
-uses System.Classes, system.json;
+uses System.Classes, system.json, Graphics;
 
 type
   TZt = class (TObject)
@@ -32,6 +32,7 @@ type
     function GetTrigger: TJSONValue;
     function GetEvent(const ja:TJSONArray): TJSONValue;
     function GetHost(const ja:TJSONArray): TJSONValue;
+    function SetEventMSG(const ja: TJSONArray; const msg: String): TJSONValue;
     property Connect:Boolean read FConnect write SetConnect;
   end;
 resourcestring
@@ -41,12 +42,21 @@ resourcestring
   StrAverage='Average';
   StrHigh='High';
   StrDisaster='Disaster';
-  StrOk='-';
+  StrOkSt='-';
+  StrAction='Requires user action';
+  StrNotActive='False Alarm';
+  StrInWork='In Progress';
+  StrQuest='Specified';
+  StrOkEvent='Corrected';
+  StrOkOther='Other';
 const
-  StatusT: array [0..6]    of string= (StrNone ,StrInformation, StrWarning, StrAverage, StrHigh, StrDisaster, StrOk);
+  StatusT: array [0..6]     of string=(StrNone ,StrInformation, StrWarning, StrAverage, StrHigh, StrDisaster, StrOkSt);
 //StatusHTML: array [0..6] of Integer=($cecece,$d6f6ff      ,$efefcc  ,$ddaaaa  ,$ff8888,$ff0000,$aaffaa);
 //StatusHTML: array [0..6] of Integer=($1F5E1F,$327232      ,$703158  ,$5D1F44  ,$8F3F3F,$762727,$aaffaa);
   StatusHTML: array [0..6] of Integer=($DBDBDB,$D6F6FF      ,$FFF6A5  ,$FFB689  ,$FF9999,$FF3838,$aaffaa);
+  EventMsgT: array [0..5]     of string=(StrAction,StrNotActive, StrInWork, StrQuest, StrOkEvent, StrOkOther);
+  EventMsgK: array [0..4]       of char=('!','-','*','?',' ');
+  EventMsgC: array [0..5]    of Integer=(clRed,clGray,clBlue,clAqua,clGreen,clGreen);
   STriggerId='triggerid';
   SHost='host';
   SDescription='description';
@@ -61,6 +71,7 @@ const
   SMessage = 'message';
   SAlias = 'alias';
   SObjectId = 'objectid';
+  SApiJsonRpcPhp = 'api_jsonrpc.php';
 
 //  .disaster { background: #FF3838 !important; }
 //  .high { background: #FF9999 !important; }
@@ -74,7 +85,7 @@ var
   //StatusT: array [0..6] of string;
 implementation
 
-uses httpsend, synautil, SysUtils, windows, Graphics;
+uses httpsend, synautil, SysUtils, windows;
 
 resourcestring
   StrErrorLogin = 'Ошибка соединения с сервером (не верный логин и пароль)';
@@ -84,22 +95,6 @@ resourcestring
   StrErrorConnectOtherSum = 'http ...';
   StrJSONError = 'Ошибка соединения с сервером (JSON)';
   StrErrorHttp = 'Ошибка соединения с сервером';
-
-function HttpPostURL(const URL, URLData: string; const Data: TStream): Boolean;
-var
-  HTTP: THTTPSend;
-begin
-  HTTP := THTTPSend.Create;
-  try
-    WriteStrToStream(HTTP.Document, URLData);
-    HTTP.MimeType := 'application/json-rpc';
-    Result := HTTP.HTTPMethod('POST', URL);
-    if Result then
-      Data.CopyFrom(HTTP.Document, 0);
-  finally
-    HTTP.Free;
-  end;
-end;
 
 { TZt }
 
@@ -128,30 +123,38 @@ function TZt.GetValue(const method:string;
                       const params:TJSONValue=nil;
                       const autintiphication:Boolean=true):TJSONValue;
 var
-  jo: TJSONObject;
+  jo,ji: TJSONObject;
 begin
   result:=nil;
+  errorlong:='';
+  error:='';
+  lastSender:='';
+  lastResult:='';
   if autintiphication then begin
     if not FConnect then Connected;
     if not FConnect then exit;
   end;
   try
     try
-      jo := TJSONObject.Create;
-      jo.AddPair('jsonrpc', '2.0');
-      jo.AddPair('method', method);
+      ji:=TJSONObject.Create;
+      ji.AddPair('jsonrpc', '2.0');
+      ji.AddPair('method', method);
       if params<>nil then
-        jo.AddPair('params',params);
+//        ji.AddPair('params',params);
+        ji.AddPair('params',(params.Clone) as TJSONValue);
       if autintiphication then
-        jo.AddPair('auth', au);
-      jo.AddPair('id', '1');
-      lastSender:=jo.ToString;
-       if post(jo,jo) then begin
-        if jo.Get(SError)<>nil then begin
+        ji.AddPair('auth', au);
+      ji.AddPair('id', '1');
+      lastSender:=ji.ToString;
+      if post(ji,jo) then begin
+        if jo=nil then begin
+          errorlong:='Http error';
+          error:=StrErrorConnect;
+        end else if (jo.Get(SError)<>nil) then begin
           jo:=jo.Get(SError).JsonValue as TJSONObject;
           errorlong:=jo.Get('data').JsonValue.Value;
           error:=StrErrorLogin;
-        end else if jo.Get('result')<>nil then begin
+        end else if (jo.Get('result')<>nil) then begin
           lastResult:=jo.Get('result').JsonValue.ToString;
           result:=jo.Get('result').JsonValue;
         end else begin
@@ -160,8 +163,8 @@ begin
           error:=StrErrorConnect;
         end
       end else begin
-          errorlong:=StrErrorConnectOtherSum;
-          error:=StrErrorConnectOther;
+        errorlong:=StrErrorConnectOtherSum;
+        error:=StrErrorConnectOther;
       end;
     except
       on E: EJSONException do begin
@@ -174,8 +177,10 @@ begin
       end;
     end;
   finally
-    //jo.Free;
+    ji.Free;
   end;
+  if error<>'' then raise Exception.Create(error+#13#10+errorlong+#13#10+lastSender+#13#10+lastResult);
+
 end;
 
 function TZt.GetEvent(const ja: TJSONArray): TJSONValue;
@@ -191,6 +196,17 @@ begin
     jo2.AddPair('objectids',ja);
   jo2.AddPair('filter',TJSONObject.Create( TJSONPair.Create('value', TJSONNumber.Create(1))));
   result:=GetValue('event.get',jo2);
+  jo2.Free;
+end;
+
+function TZt.SetEventMSG(const ja: TJSONArray; const msg:String): TJSONValue;
+var
+  jo2: TJSONObject;
+begin
+  jo2:= TJSONObject.Create;
+  jo2.AddPair('eventids',ja);
+  jo2.AddPair('message',msg);
+  result:=GetValue('event.acknowledge',jo2);
   jo2.Free;
 end;
 
@@ -270,7 +286,7 @@ end;
 
 function TZt.urla: string;
 begin
-  result:=url+'api_jsonrpc.php';
+  result:=url+SApiJsonRpcPhp;
 end;
 
 function TZt.urlu: string;
@@ -281,11 +297,24 @@ begin
 end;
 
 function TZt.post(const ji: TJSONObject; var jo: TJSONObject): boolean;
+  function HttpPostURL(const URL, URLData: string; const Data: TStream): Boolean;
+  var
+    HTTP: THTTPSend;
+  begin
+    HTTP := THTTPSend.Create;
+    try
+      WriteStrToStream(HTTP.Document, URLData);
+      HTTP.MimeType := 'application/json-rpc';
+      Result := HTTP.HTTPMethod('POST', URL);
+      if Result
+      then Data.CopyFrom(HTTP.Document, 0);
+    finally
+      HTTP.Free;
+    end;
+  end;
 var
-//  Data:TMemoryStream;
   Data:TStringStream;
 begin
-//  Data:=TMemoryStream.Create;
   Data:=TStringStream.Create('');
   Result:= HttpPostURL(urla,ji.ToJSON,Data);
   if Result then begin

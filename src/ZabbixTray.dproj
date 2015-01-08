@@ -5,7 +5,7 @@
         <FrameworkType>VCL</FrameworkType>
         <MainSource>ZabbixTray.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -37,6 +37,12 @@
     <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
         <Cfg_2>true</Cfg_2>
         <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+        <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
@@ -72,11 +78,14 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_PreRelease>true</VerInfo_PreRelease>
+        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_MapFile>3</DCC_MapFile>
         <Icon_MainIcon>..\img\favicon.ico</Icon_MainIcon>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Alef-E Ltd &amp; V.Khonin;FileDescription=ZabbixTray;FileVersion=1.0.0.0;InternalName=ZabbixTray.exe;LegalCopyright=Alef-E Ltd &amp; V.Khonin (c) 2014-2015;LegalTrademarks=;OriginalFilename=ZabbixTray.exe;ProductName=ZabbixTray;ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alef-E Ltd &amp; V.Khonin;FileDescription=ZabbixTray;FileVersion=1.0.1.0;InternalName=ZabbixTray.exe;LegalCopyright=Alef-E Ltd &amp; V.Khonin (c) 2014-2015;LegalTrademarks=;OriginalFilename=ZabbixTray.exe;ProductName=ZabbixTray;ProductVersion=1.0;Comments=</VerInfo_Keys>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -85,16 +94,32 @@
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_Build>2</VerInfo_Build>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
+        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Keys>CompanyName=Alef-E Ltd &amp; V.Khonin;FileDescription=ZabbixTray;FileVersion=1.0.1.2;InternalName=ZabbixTray;LegalCopyright=Alef-E Ltd &amp; V.Khonin (c) 2014-2015;LegalTrademarks=;OriginalFilename=ZabbixTray.exe;ProductName=ZabbixTray;ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <Icon_MainIcon>..\img\favicon.ico</Icon_MainIcon>
+    </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="UMain.pas">
             <Form>frmTZMain</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="F:\comp\synapse\source\lib\httpsend.pas"/>
         <DCCReference Include="UZT.pas"/>
+        <DCCReference Include="UOptions.pas">
+            <Form>frmOptions</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="USetMsg.pas">
+            <Form>frmSetMsg</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
