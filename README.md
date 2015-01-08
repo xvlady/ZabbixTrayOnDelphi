@@ -20,4 +20,4 @@ rus
 
 А теперь и сам пользуюсь вместо открытого окна браузера - нужное окно всплывёт само и предупредит, что косяк (и уже не один).
 
-![ZabbixTray](https://alef-e.ru/wiki/lib/exe/fetch.php/zabbix/zabbixtray/pasted/20150109-011146.png)
+![ZabbixTray]([[https://alef-e.ru/wiki/lib/exe/fetch.php/zabbix/zabbixtray/pasted/20150109-011146.png]]https://alef-e.ru/wiki/lib/exe/fetch.php/zabbix/zabbixtray/pasted/20150109-011146.png)
