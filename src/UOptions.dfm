@@ -2,7 +2,7 @@ object frmOptions: TfrmOptions
   Left = 0
   Top = 0
   BorderIcons = [biSystemMenu]
-  Caption = 'frmOptions'
+  Caption = 'Options'
   ClientHeight = 327
   ClientWidth = 642
   Color = clBtnFace

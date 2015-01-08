@@ -52,3 +52,8 @@
 # Delphi history and backups
 __history/
 *.~*
+/bin/AfterBuild.bat
+/bin/eHous
+/bin/tools
+/src/Win32/Debug
+/src/RUS/Win32/Debug

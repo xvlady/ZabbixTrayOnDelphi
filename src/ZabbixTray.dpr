@@ -12,8 +12,8 @@ uses
 
 {$R *.res}
 
-var
-  mhApp: THandle;
+//var
+//  mhApp: THandle;
 
 begin
   Application.Initialize;
@@ -25,23 +25,23 @@ begin
 //begin
 //  mhApp:=OpenMutex(MUTEX_ALL_ACCESS, True, PChar(AppHandleName));
 //  if (mhApp<>0) then begin
-  mhApp:=FindWindow(PChar('TApplication'), PChar('ZabbixTray'));
-  if (mhApp<>0) and (System.DebugHook = 0) then
-//    if IsIconic(mhApp) then
-      ShowWindow(mhApp, SW_Restore)
-//    else
-//      SetForegroundWindow(mhApp);
-//  end
-//    else
-//  begin
-//    mhApp := CreateMutex(nil, false, PChar(AppHandleName));
-//    if (mhApp = 0 ) then
-//      raise Exception.Create('WIN32 API Error:'+#13#10 +
-//            SysErrorMessage(GetLastError));
-//  end;
-//end;
-  //Application.MainFormOnTaskbar := True;
-  else
+//  mhApp:=FindWindow(PChar('TApplication'), PChar('ZabbixTray'));
+//  if (mhApp<>0) and (System.DebugHook = 0) then
+////    if IsIconic(mhApp) then
+//      ShowWindow(mhApp, SW_Restore)
+////    else
+////      SetForegroundWindow(mhApp);
+////  end
+////    else
+////  begin
+////    mhApp := CreateMutex(nil, false, PChar(AppHandleName));
+////    if (mhApp = 0 ) then
+////      raise Exception.Create('WIN32 API Error:'+#13#10 +
+////            SysErrorMessage(GetLastError));
+////  end;
+////end;
+//  //Application.MainFormOnTaskbar := True;
+//  else
     Application.CreateForm(TfrmTZMain, frmTZMain);
   Application.Title:='ZabbixTray';
   Application.Run;
