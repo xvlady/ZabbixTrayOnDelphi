@@ -5,7 +5,8 @@ ZabbixTray On Delphi (XE7) with ehLib and AlphaControls.
 
 View active Trigger and Event, SetText for Event, babble and show main form on active trigger
 
-== rus ==
+rus 
+---
 Не буду рассказывать зачем маленькой компании где меньше 10 серверов мониторинг (например, он умеет определять, что пропала связь быстрее, чем оператор в выходной решит поинтересоваться почему ему не звонят, смс не уходят и сайт не обновляется).
 Расскажу зачем это приложение понадобилось одному моему другу.
 - Есть несколько сервисов за каждый из которых отвечает отдельный человек/компания.
@@ -19,4 +20,4 @@ View active Trigger and Event, SetText for Event, babble and show main form on a
 
 А теперь и сам пользуюсь вместо открытого окна браузера - нужное окно всплывёт само и предупредит, что косяк (и уже не один).
 
-[ZabbixTray]([[https://alef-e.ru/wiki/lib/exe/fetch.php/zabbix/zabbixtray/pasted/20150109-011146.png]]Main form)
+[ZabbixTray]([[https://alef-e.ru/wiki/lib/exe/fetch.php/zabbix/zabbixtray/pasted/20150109-011146.png]])
