@@ -9,7 +9,8 @@ uses
   Vcl.ExtCtrls, Vcl.StdCtrls, sMemo, Vcl.Menus, Vcl.ComCtrls, sPageControl,
   sPanel, DBGridEhGrouping, ToolCtrlsEh, DBGridEhToolCtrls, DynVarsEh,
   MemTableDataEh, Data.DB, MemTableEh, GridsEh, DBAxisGridsEh, DBGridEh,
-  sSkinProvider, sSkinManager, Vcl.AppEvnts, sHintManager, acAlphaHints;
+  sSkinProvider, sSkinManager, Vcl.AppEvnts, sHintManager, acAlphaHints,
+  PropFilerEh, PropStorageEh;
 
 type
   TfrmTZMain = class(TForm)
@@ -35,8 +36,13 @@ type
     miSep01: TMenuItem;
     miOpen: TMenuItem;
     statBar: TStatusBar;
-    ilTr: TsAlphaImageList;
     miZabbix: TMenuItem;
+    miOptions: TMenuItem;
+    pmG: TPopupMenu;
+    miSetMSG: TMenuItem;
+    RegPropStorageManEh1: TRegPropStorageManEh;
+    PropStorageEh1: TPropStorageEh;
+    ilTr: TImageList;
     procedure btnConnectClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -44,35 +50,50 @@ type
       var Background: TColor; State: TGridDrawState);
     procedure miExitClick(Sender: TObject);
     procedure ApplicationEvents1Minimize(Sender: TObject);
-    procedure trayIconClick(Sender: TObject);
     procedure trayIconDblClick(Sender: TObject);
-    procedure trayIconBalloonClick(Sender: TObject);
     procedure ApplicationEvents1Restore(Sender: TObject);
     procedure miOpenClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure WMQueryEndSession (var Msg : TWMQueryEndSession); message WM_QueryEndSession;
     procedure miZabbixClick(Sender: TObject);
+    procedure miOptionsClick(Sender: TObject);
+    procedure miSetMSGClick(Sender: TObject);
+    procedure qryMemAfterInsert(DataSet: TDataSet);
   private
     SysClose:integer;
     zt:TZt;
     FmaxError:Integer;
+
+    ShowMain      :Integer;
+    ShowBable     :Integer;
+    procedure Start(const full:Boolean=True);
+    procedure Stop(const full:Boolean=True);
   public
-    { Public declarations }
+    inifile:string;
+    EventTemplates:TStringList;
   end;
 
 var
   frmTZMain: TfrmTZMain;
 
-implementation
-
-uses system.json, DateUtils, shellapi;
-{$R *.dfm}
-resourcestring
-  StrNotFondTriggerid = 'Not fond triggerid=';
-
 const
   SIteration = 'iteration';
   SUser = 'user';
+  SCheck = 'Check';
+  SCheck2 = 'Check2';
+
+implementation
+
+uses system.json, DateUtils, shellapi, uOptions, System.IniFiles, uSetMSG;
+{$R *.dfm}
+resourcestring
+  StrNotFondTriggerid = 'Not fond triggerid=';
+  StrStartEditOptions = 'Start edit Options? (or exit)';
+  StrNotFond = ' not fond!';
+  StrD = 'd';
+  StrH = 'h';
+  StrM = 'm';
+
 
 Function xwFindColumnEh(c:TDBGridColumnsEh;FieldName:String):integer;
 var i:integer;
@@ -83,6 +104,24 @@ begin
       result:=i;
       break;
     end;
+end;
+
+function Time2String(const d1,d2:TDateTime):string;
+var
+  z:Integer;
+begin
+  z:=Trunc(DaySpan(d1, d2));
+  if z>2 then
+    Result:=IntToStr(z)+StrD
+  else begin
+    z:=Trunc(HourSpan(d1, d2));
+    if z>4 then
+      Result:=IntToStr(z)+StrH
+    else begin
+      z:=Trunc(MinuteSpan(d1, d2));
+      Result:=IntToStr(z)+StrM
+    end;
+  end;
 end;
 
 procedure TfrmTZMain.btnConnectClick(Sender: TObject);
@@ -136,18 +175,7 @@ begin
       qryMem.FieldByName(SPriority).AsString:=jo.GetValue(SPriority).Value;
       qryMem.FieldByName('priorityT').AsString:=StatusT[qryMem.FieldByName(SPriority).AsInteger];
       qryMem.FieldByName(SLastchange).AsDateTime:=UnixToDateTime(StrToInt(jo.GetValue(SLastchange).Value),false);
-      z:=Trunc(DaySpan(qryMem.FieldByName(SLastchange).AsDateTime, iteration));
-      if z>2
-      then qryMem.FieldByName('T').AsString:=IntToStr(z)+'d'
-      else begin
-        z:=Trunc(HourSpan(qryMem.FieldByName(SLastchange).AsDateTime, iteration));
-        if z>4
-        then qryMem.FieldByName('T').AsString:=IntToStr(z)+'h'
-        else begin
-          z:=Trunc(MinuteSpan(qryMem.FieldByName(SLastchange).AsDateTime, iteration));
-          qryMem.FieldByName('T').AsString:=IntToStr(z)+'m'
-        end;
-      end;
+      qryMem.FieldByName('T').AsString:=Time2String(qryMem.FieldByName(SLastchange).AsDateTime, iteration);
       qryMem.FieldByName(SComments).AsString:=jo.GetValue(SComments).Value;
       qryMem.FieldByName(SError).AsString:=jo.GetValue(SError).Value;
       qryMem.FieldByName(SHostId).AsString:=jo.GetValue(SHostId).Value;
@@ -192,7 +220,8 @@ begin
             if (jo.GetValue(SAcknowledges) as TJSONArray).Count>0 then begin
               jo:=(jo.GetValue(SAcknowledges) as TJSONArray).items[0] as TJSONObject;
               qryMem.FieldByName(SUser).AsString:=jo.GetValue(SAlias).Value;
-              qryMem.FieldByName(SClock).AsDateTime:=UnixToDateTime(StrToInt(jo.GetValue(SClock).Value));
+              qryMem.FieldByName(SClock).AsDateTime:=UnixToDateTime(StrToInt(jo.GetValue(SClock).Value),false);
+              qryMem.FieldByName('ET').AsString:=Time2String(qryMem.FieldByName(SClock).AsDateTime, iteration);
               if qryMem.FieldByName(SMessage).AsString<>jo.GetValue(SMessage).Value then begin
                 s3.Add(qryMem.FieldByName(SHost).AsString+':'+qryMem.FieldByName('T').AsString);
                 s3.Add(qryMem.FieldByName(SDescription).AsString);
@@ -246,64 +275,30 @@ begin
 end;
 
 procedure TfrmTZMain.FormCreate(Sender: TObject);
-var
-  ini:TStringList;
-  s:string;
-//  i:integer;
 begin
-  FmaxError:=0;
-
-  s:=Copy(ParamStr(0),1,length(ParamStr(0))-4)+'.ini';
-  if not fileexists(s)
-  then begin
-    SysClose:=3;
-    raise Exception.Create(s+' not fond!');
-  end;
-  ini:=TStringList.create;
-  try
-    ini.LoadFromFile(s);
-    //'alefezt','alefezt','http://192.168.0.3/zabbix/'
-    zt:=TZt.Create(ini.Values['login'],ini.Values['pswd'],ini.Values['URL']);
-    zt.url_up:=ini.Values['URLP'];
-  finally
-    ini.Free;
-  end;
-  statBar.Panels[0].Text:=zt.login;
-  statBar.Panels[1].Text:=zt.URL;
   SysClose:=0;
-//  i:=xwFindColumnEh(g.Columns,SPriority);
-//  if i=-1 then raise Exception.Create('FindColumn(Priority)=nil');
-//  with g.Columns[i] do begin
-//    picklist.clear;
-//    keylist.clear;
-//    for i := Low(StatusT) to High(StatusT) do begin
-//      picklist.Add(StatusT[i]);
-//      keylist.add(inttostr(i));
-//    end;
-//  end;
-  btnConnectClick(Sender);
-  tmrZt.Enabled:=True;
+  inifile:=Copy(ParamStr(0),1,length(ParamStr(0))-4)+'.ini';
   application.ShowMainForm:=false;
-  TrayIcon.Visible:=True;
-  if not (FmaxError in [0,1,6])
-  then miOpenClick(self);
+  Start;
 end;
 
 procedure TfrmTZMain.FormDestroy(Sender: TObject);
 begin
-  zt.free;
+  stop;
 end;
 
 procedure TfrmTZMain.gGetCellParams(Sender: TObject; Column: TColumnEh;
   AFont: TFont; var Background: TColor; State: TGridDrawState);
+var
+  i:Integer;
 begin
   Background:=StatusC[qryMem.FieldByName(SPriority).AsInteger];
   if Length(qryMem.FieldByName(SMessage).AsString)>0 then begin
     AFont.Style:=[fsBold];
-    if copy(qryMem.FieldByName(SMessage).AsString,1,1)='-' then AFont.Color:=clGray
-    else if copy(qryMem.FieldByName(SMessage).AsString,1,1)='!' then AFont.Color:=clRed
-    else if copy(qryMem.FieldByName(SMessage).AsString,1,1)='*' then AFont.Color:=clBlue
-    else AFont.Color:=clGreen
+    AFont.Color:=EventMsgC[High(EventMsgC)];
+    for I := Low(EventMsgK) to High(EventMsgK) do
+      if copy(qryMem.FieldByName(SMessage).AsString,1,1)=EventMsgK[i]
+      then AFont.Color:=EventMsgC[i];
   end else begin
     AFont.Color:=clBlack;
     AFont.Style:=[];
@@ -323,6 +318,89 @@ begin
   setForegroundWindow(handle); //выдвигает окно на первый план
 end;
 
+procedure TfrmTZMain.miOptionsClick(Sender: TObject);
+var
+  frmOptions: TfrmOptions;
+begin
+  frmOptions:= TfrmOptions.create(self);
+  try
+    Stop;
+    Self.Hide;
+    frmOptions.ShowModal;
+  finally
+    Self.Show;
+    frmOptions.free;
+    Start;
+  end;
+end;
+
+procedure TfrmTZMain.miSetMSGClick(Sender: TObject);
+var
+  frmSetMsg: TfrmSetMsg;
+  jo:TJSONArray;
+  bm:TBookmark;
+  i:Integer;
+  procedure check(const Value:Boolean=True);
+  begin
+    qryMem.Edit;
+    qryMem.FieldByName(SCheck).AsBoolean:=Value;
+    qryMem.FieldByName(SCheck2).AsBoolean:=Value;
+    qryMem.Post;
+  end;
+begin
+  Stop(False);
+  bm :=  qryMem.Bookmark;
+  frmSetMsg:= TfrmSetMsg.create(self);
+  try
+    try
+      qryMem.DisableControls;
+//      qryMem.First;
+//      while not qryMem.Eof do begin
+//        check(False);
+//        qryMem.Next;
+//      end;
+      if g.SelectedRows.Count>0 then
+        for i := 0 to g.SelectedRows.Count - 1 do begin
+          g.DataSource.DataSet.GotoBookmark(Pointer(g.SelectedRows.Items[i]));
+          check;
+        end
+      else check;
+    finally
+      qryMem.EnableControls;
+    end;
+    qryMem.Filter:=SCheck+'=True';
+    qryMem.Filtered:=True;
+    if frmSetMsg.ShowModal=1 then begin
+      jo:=TJSONArray.create;
+      try
+        try
+          qryMem.DisableControls;
+          qryMem.First;
+          while not qryMem.Eof do begin
+            if qryMem.FieldByName(SCheck2).AsBoolean
+            then jo.Add(qryMem.FieldByName(SEventID).AsString);
+            if qryMem.FieldByName(SCheck).AsBoolean
+            then check(False) //Filtered:=True
+            else qryMem.Next;
+          end;
+        finally
+          qryMem.EnableControls;
+        end;
+        if frmSetMsg.cbbAddEventType.ItemIndex<>High(EventMsgT)
+        then frmSetMsg.cbbMSG.Text:=EventMsgK[frmSetMsg.cbbAddEventType.ItemIndex]+' '+frmSetMsg.cbbMSG.Text;
+        zt.SetEventMSG(jo.Clone as TJSONArray,frmSetMsg.cbbMSG.Text)
+      finally
+        jo.Free;
+      end;
+    end;
+  finally
+    qryMem.Filtered:=false;
+    frmSetMsg.Free;
+    Start(False);
+  end;
+  qryMem.Bookmark := bm;
+end;
+
 procedure TfrmTZMain.miZabbixClick(Sender: TObject);
 begin
     shellapi.ShellExecute(Application.handle, 'open',
@@ -332,27 +410,101 @@ begin
 
 end;
 
-procedure TfrmTZMain.trayIconBalloonClick(Sender: TObject);
+procedure TfrmTZMain.qryMemAfterInsert(DataSet: TDataSet);
 begin
-//
+  qryMem.FieldByName(SCheck).AsBoolean:=false;
 end;
 
-procedure TfrmTZMain.trayIconClick(Sender: TObject);
+procedure TfrmTZMain.Start(const full:Boolean=True);
+var
+  ini : TIniFile;
+  URL           :String ;
+  Login         :String ;
+  Pswd          :String ;
+  URLP          :String ;
+  Options       :Bool   ;
+  EventData     :Bool   ;
+  ShowStart     :Integer;
+  i:Integer;
 begin
-//  TrayIcon.visible:=true; // делаем значок в трее видимым
-//  trayicon.balloontitle:=('Текст 1');
-//  trayicon.balloonhint:=('Текст 2');
-//  trayicon.showballoonHint;// показываем наше уведомление
+  FmaxError:=0;
+  if full then begin
+    URL:='';
+    EventTemplates:=TStringList.create;
+    ini := TIniFile.Create(frmTZMain.inifile);
+    if fileexists(inifile) then
+      try
+        URL           :=ini.ReadString ('Main','URL'             ,''  );
+        Login         :=ini.ReadString ('Main','Login'           ,''  );
+        Pswd          :=ini.ReadString ('Main','PSWD'            ,''  );
+        URLP          :=ini.ReadString ('Main','URLP'            ,''  );
+        Options       :=ini.ReadBool   ('View','ShowMenuOptions' ,True);
+        EventData     :=ini.ReadBool   ('View','ShowMenuSetMSG'  ,True);
+        ShowStart     :=ini.ReadInteger('Alarm','ShowFormOnStart',2   );
+        ShowMain      :=ini.ReadInteger('Alarm','ShowMainForm'   ,3   );
+        ShowBable     :=ini.ReadInteger('Alarm','ShowPopupMSG'   ,1   );
+        ini.ReadSectionValues('EventTemplate',EventTemplates);
+        for I := 0 to EventTemplates.Count-1 do
+          EventTemplates[i]:=EventTemplates.ValueFromIndex[i];
+      finally
+        ini.Free;
+      end
+    else URL:='';
+
+    if (URL='') or (Login='') or (Pswd='') then begin
+      if Application.MessageBox(PChar(inifile+StrNotFond),
+        PChar(StrStartEditOptions), MB_OKCANCEL + MB_ICONQUESTION + MB_TOPMOST)=idOk
+      then miOptionsClick(nil)
+      else begin
+        SysClose:=3;
+        TrayIcon.Visible:=True;
+        close;
+        Application.Terminate;
+      end;
+      exit
+    end;
+
+      //'alefezt','alefezt','http://192.168.0.3/zabbix/'
+      zt:=TZt.Create(login,pswd,URL);
+      zt.url_up:=URLP;
+      statBar.Panels[0].Text:=zt.login;
+      statBar.Panels[1].Text:=zt.URL;
+      miOptions.Visible:=Options;
+      miSetMSG.Visible:=EventData;
+
+//  i:=xwFindColumnEh(g.Columns,SPriority);
+//  if i=-1 then raise Exception.Create('FindColumn(Priority)=nil');
+//  with g.Columns[i] do begin
+//    picklist.clear;
+//    keylist.clear;
+//    for i := Low(StatusT) to High(StatusT) do begin
+//      picklist.Add(StatusT[i]);
+//      keylist.add(inttostr(i));
+//    end;
+//  end;
+  end;
+
+  btnConnectClick(nil);
+  tmrZt.Enabled:=True;
+  TrayIcon.Visible:=True;
+  if (FmaxError <>6) and (FmaxError>=ShowStart)
+  then miOpenClick(self);
+end;
+
+procedure TfrmTZMain.Stop(const full:Boolean=True);
+begin
+//  EventTemplates.clear;
+  tmrZt.Enabled:=False;
+  TrayIcon.Visible:=false;
+  if full then EventTemplates.free;
+  if full then zt.free;
 end;
 
 procedure TfrmTZMain.trayIconDblClick(Sender: TObject);
 begin
-//  TrayIcon.ShowBalloonHint;
-//  ShowWindow(Handle,SW_RESTORE);
   show(); //делает форму видимой
   application.Restore;
   setForegroundWindow(handle); //выдвигает окно на первый план
-//  TrayIcon.Visible:=False;
 end;
 
 procedure TfrmTZMain.WMQueryEndSession(var Msg: TWMQueryEndSession);
@@ -367,19 +519,11 @@ begin
 //Убираем с панели задач
   TrayIcon.Visible:=true;
   Hide;
-//  ShowWindow(Handle,SW_HIDE);  // Скрываем программу
-//  ShowWindow(Application.Handle,SW_HIDE);  // Скрываем кнопку с TaskBar'а
-//  SetWindowLong(Application.Handle, GWL_EXSTYLE,
-//  GetWindowLong(Application.Handle, GWL_EXSTYLE) or (not WS_EX_APPWINDOW));
 end;
 
 procedure TfrmTZMain.ApplicationEvents1Restore(Sender: TObject);
 begin
   show(); //делает форму видимой
-//  TrayIcon.ShowBalloonHint;
-//  ShowWindow(Handle,SW_RESTORE);
-//  SetForegroundWindow(Handle);
-//  TrayIcon.Visible:=False;
 end;
 
 end.
