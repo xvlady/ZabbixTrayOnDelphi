@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+-->
+<WixLocalization Culture="ru-ru" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+    <String Id="msierrIISCannotConnect" Overridable="yes">Не удалось подключиться к IIS.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedReadWebSite" Overridable="yes">Не удалось прочитать таблицу IIsWebSite.   ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedReadWebDirs" Overridable="yes">Не удалось прочитать таблицу IIsWebDirs.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedReadVDirs" Overridable="yes">Не удалось прочитать таблицу IIsVirtualDirs.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedReadFilters" Overridable="yes">Не удалось прочитать таблицу IIsFilters.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedReadMimeMap" Overridable="yes">Не удалось прочитать таблицу IIsMimeMap. ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedReadAppPool" Overridable="yes">Не удалось прочитать таблицу IIsAppPool. ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedReadProp" Overridable="yes">Не удалось прочитать таблицу IIsProperty. ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedReadWebSvcExt" Overridable="yes">Не удалось прочитать таблицу IIsWebServiceExtension. ([2]   [3]   [4]   [5])</String>
+
+    <String Id="msierrIISFailedSchedTransaction" Overridable="yes">Не удалось подготовить транзакцию по изменению метабазы IIS.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedInstallWebs" Overridable="yes">Не удалось подготовить инсталляцию IIS Web Sites.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedInstallWebDirs" Overridable="yes">Не удалось подготовить инсталляцию IIS Web Directories.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedInstallVDirs" Overridable="yes">Не удалось подготовить инсталляцию IIS Virtual Directories.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedInstallFilters" Overridable="yes">Не удалось подготовить инсталляцию IIS Filters.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedInstallAppPool" Overridable="yes">Не удалось подготовить инсталляцию IIS AppPools.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedInstallProp" Overridable="yes">Не удалось подготовить инсталляцию IIS Properties.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedInstallWebSvcExt" Overridable="yes">Не удалось подготовить инсталляцию IIS Web Service Extensions.  ([2]   [3]   [4]   [5])</String>
+
+    <String Id="msierrIISFailedSchedUninstallWebs" Overridable="yes">Не удалось подготовить деинсталляцию IIS Web Sites.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedUninstallWebDirs" Overridable="yes">Не удалось подготовить деинсталляцию IIS Web Directories.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedUninstallVDirs" Overridable="yes">Не удалось подготовить деинсталляцию IIS Virtual Directories.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedUninstallFilters" Overridable="yes">Не удалось подготовить деинсталляцию IIS Filters.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedUninstallAppPool" Overridable="yes">Не удалось подготовить деинсталляцию IIS AppPools.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedUninstallProp" Overridable="yes">Не удалось подготовить деинсталляцию IIS Properties.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedSchedUninstallWebSvcExt" Overridable="yes">Не удалось подготовить деинсталляцию IIS Web Service Extensions.  ([2]   [3]   [4]   [5])</String>
+
+    <String Id="msierrIISFailedStartTransaction" Overridable="yes">Не удалось начать транзакцию по изменению метабазы IIS. ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedOpenKey" Overridable="yes">Не удалось открыть ключ метабазы IIS.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedCreateKey" Overridable="yes">Не удалось создать ключ метабазы IIS.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedWriteData" Overridable="yes">Не удалось записать данные в ключ метабазы IIS.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedCreateApp" Overridable="yes">Не удалось создать Web-приложение IIS.  ([2]   [3]   [4]   [5])</String>
+    <String Id="msierrIISFailedDeleteKey" Overridable="yes">Не удалось удалить ключ метабазы IIS.  ([2]   [3]   [4]   [5])</String>
+
+    <String Id="ConfigureIIs" Overridable="yes">Конфигурирование IIS</String>
+    <String Id="StartMetabaseTransaction" Overridable="yes">Начало транзакции изменений в метабазе IIS</String>
+    <String Id="RollbackMetabaseTransaction" Overridable="yes">Откат изменений в метабазе IIS</String>
+    <String Id="CommitMetabaseTransaction" Overridable="yes">Закрытие транзакции изменений в метабазе IIS</String>
+    <String Id="WriteMetabaseChanges" Overridable="yes">Установка ключей и данных в метабазе IIS</String>
+</WixLocalization>

@@ -57,3 +57,7 @@ __history/
 /bin/tools
 /src/Win32/Debug
 /src/RUS/Win32/Debug
+/wix/*.msi
+/wix/*.wixobj
+/wix/*.wixpdb
+/wix/*.log

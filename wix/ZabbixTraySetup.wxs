@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+	<?define ProductName="ZabbixTray" ?>
+	<?define ProductVersion="1.0.0.0" ?>
+	<?define ProductCode="2EA71E22-2F0A-442F-ABCD-5FEF87DD8215"?>
+	<?define UpgradeCode="69DACC11-22EB-4FDF-BF89-1F5378E3BCFB"?>
+	<?define Manufacturer="Alef-E ltd"?>
+	<?define Language="1033"?>
+	<Product Id="$(var.ProductCode)" Name="$(var.ProductName)" Language="1033" Version="$(var.ProductVersion)" Manufacturer="$(var.Manufacturer)" UpgradeCode="$(var.UpgradeCode)">
+		<Package Description="ZabbixTray MSI file" Comments="use from automatic install" InstallerVersion="200" Compressed="yes" />
+
+
+		<Media Id="1" Cabinet="zabbix.cab" EmbedCab="yes" />
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="APPLICATIONROOTDIRECTORY" Name="$(var.ProductName)" />
+			</Directory>
+			<Directory Id="ProgramMenuFolder">
+				<Directory Id="ApplicationProgramsFolder" Name="$(var.ProductName)" />
+			</Directory> 				
+			<Component Id="RegistryEntries" Guid="75B8E042-78B4-47D8-8383-A6E725D2D1E1">
+				<RegistryKey Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\Run">
+					<RegistryValue Type="string" Name="ZabbixTray" Value="[APPLICATIONROOTDIRECTORY]ZabbixTray.exe" KeyPath="yes" />
+				</RegistryKey>
+			</Component>
+		</Directory>
+
+		<DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+			<Component Id="ZABBIXTRAY.EXE" DiskId="1" Guid="0961B57E-2A9C-49F3-AD78-67D35B69D020">
+				<File Id="ZABBIXTRAY.EXE" Name="ZabbixTray.exe" Source="F:\APRG\ZabbixTray\bin\ZabbixTray.exe" KeyPath="yes" Checksum="yes" />
+			</Component>
+		</DirectoryRef>
+		<Icon Id="icon.ico" SourceFile="F:\APRG\ZabbixTray\bin\ZabbixTray.exe"/>
+		<Property Id="ARPPRODUCTICON" Value="icon.ico" />
+ 		<DirectoryRef Id="ApplicationProgramsFolder">
+			<Component Id="ApplicationShortcut" Guid="21884E02-6E5A-4279-BF51-9B3609C90186">
+				<Shortcut Id="ApplicationStartMenuShortcut" Name="$(var.ProductName)" Description="ZabbixTray" Target="[APPLICATIONROOTDIRECTORY]ZabbixTray.exe" WorkingDirectory="APPLICATIONROOTDIRECTORY" />
+				<util:InternetShortcut Id="OnlineDocumentationShortcut"
+                        Name="Online Documentation"
+                               Target="https://alef-e.ru/wiki/doku.php?id=zabbix/zabbixtray/start"/>
+				<RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+				<RegistryValue Root="HKCU" Key="Software\$(var.Manufacturer)\$(var.ProductName)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+			</Component>
+		</DirectoryRef>
+		
+
+		<Feature Id="MainApplication" Title="Main Application" Level="1">
+			<ComponentRef Id="ZABBIXTRAY.EXE" />
+			<ComponentRef Id="ApplicationShortcut" /> 
+	 		<ComponentRef Id="RegistryEntries" /> 
+		</Feature>
+		<Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONROOTDIRECTORY" />
+		<UIRef Id="WixUI_InstallDir" />
+		<WixVariable Id="WixUIDialogBmp" Value="F:\APRG\ZabbixTray\img\10.bmp" />		
+		<UI />
+	</Product>
+</Wix>
