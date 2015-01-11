@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sCheckBox, sSkinProvider,
   sEdit, sComboBox, sButton, Vcl.ExtCtrls, sPanel, Vcl.ComCtrls, sComboBoxes,
-  sMemo;
+  sMemo, sSpinEdit;
 
 type
   TfrmOptions = class(TForm)
@@ -24,6 +24,8 @@ type
     cbbShowBable: TsComboBox;
     cbbShowStart: TsComboBox;
     mmoTempl: TsMemo;
+    chkAutorun: TsCheckBox;
+    edtInterval: TsSpinEdit;
     procedure FormCreate(Sender: TObject);
     procedure cbbShowMainDrawItem(Control: TWinControl; Index: Integer;
       Rect: TRect; State: TOwnerDrawState);
@@ -39,7 +41,7 @@ implementation
 
 {$R *.dfm}
 
-uses uzt, System.IniFiles, umain;
+uses uzt, System.IniFiles, umain, Registry;
 
 procedure TfrmOptions.btnCancelClick(Sender: TObject);
 begin
@@ -50,7 +52,47 @@ procedure TfrmOptions.btnOkClick(Sender: TObject);
 var
   ini : TIniFile;
   i:Integer;
+  reg :TRegistry;
 begin
+  if chkAutorun.Checked then begin
+    reg := TRegistry.Create();
+    try
+      reg.RootKey := HKEY_CURRENT_USER;
+      if reg.OpenKey('\Software\Microsoft\Windows\CurrentVersion\Run',True)
+      then reg.writeString('ZabbixTray',ParamStr(0))
+      else raise Exception.Create('Don''t Open Key \Software\Microsoft\Windows\CurrentVersion\Run');
+      reg.closekey();
+    finally
+      reg.Free;
+    end;
+  end else begin
+    try
+      reg := TRegistry.Create(KEY_READ);
+      try
+        reg.RootKey := HKEY_CURRENT_USER;
+        reg.OpenKeyReadOnly('\Software\Microsoft\Windows\CurrentVersion\Run');
+        if reg.ReadString('ZabbixTray')='' then chkAutorun.Checked:=False;
+        reg.closekey();
+      finally
+        reg.Free;
+      end;
+    except
+      chkAutorun.Checked:=False;
+    end;
+    if chkAutorun.Checked then begin
+      reg := TRegistry.Create();
+      try
+        reg.RootKey := HKEY_CURRENT_USER;
+        if reg.OpenKey('\Software\Microsoft\Windows\CurrentVersion\Run',false) then
+          reg.DeleteValue('ZabbixTray');
+        reg.closekey();
+      finally
+        reg.Free;
+      end;
+    end;
+  end;
+
+
   ini := TIniFile.Create(frmTZMain.inifile);
   try
     ini.WriteString ('Main','URL'             ,edtURL.Text           );
@@ -62,6 +104,8 @@ begin
     ini.WriteInteger('Alarm','ShowFormOnStart',cbbShowStart.ItemIndex);
     ini.WriteInteger('Alarm','ShowMainForm'   ,cbbShowMain.ItemIndex );
     ini.WriteInteger('Alarm','ShowPopupMSG'   ,cbbShowBable.ItemIndex);
+    ini.WriteInteger('Main','Interval'        ,edtInterval.Value     );
+    ini.WriteBool   ('Main','Autorun'         ,chkAutorun.Checked    );
     ini.EraseSection('EventTemplate');
     for i := 0 to mmoTempl.Lines.Count-1 do
       ini.WriteString('EventTemplate','T'+IntToStr(i),mmoTempl.Lines[i]);
@@ -85,6 +129,7 @@ procedure TfrmOptions.FormCreate(Sender: TObject);
 var
   i:Integer;
   ini : TIniFile;
+  reg:TRegistry;
 begin
   for i := 0 to 5 do
     cbbShowMain.Items.Add(StatusT[i]);
@@ -98,6 +143,8 @@ begin
     edtLogin.Text         :=ini.ReadString ('Main','Login'           ,''  );
     edtPswd.Text          :=ini.ReadString ('Main','PSWD'            ,''  );
     edtURLP.Text          :=ini.ReadString ('Main','URLP'            ,''  );
+    edtInterval.Value     :=ini.ReadInteger('Main','Interval'        ,1   );
+    chkAutorun.Checked    :=ini.ReadBool   ('Main','Autorun'         ,True);
     chkOptions.Checked    :=ini.ReadBool   ('View','ShowMenuOptions' ,True);
     chkEventData.Checked  :=ini.ReadBool   ('View','ShowMenuSetMSG'  ,True);
     cbbShowStart.ItemIndex:=ini.ReadInteger('Alarm','ShowFormOnStart',2   );
@@ -113,6 +160,24 @@ begin
         '* I do this task'+#13#10+
         '? Wait next events'+#13#10+
         'Ok';
+    if chkAutorun.Checked then begin
+      try
+        reg := TRegistry.Create(KEY_READ);
+        try
+          reg.RootKey := HKEY_CURRENT_USER;
+          reg.OpenKeyReadOnly('\Software\Microsoft\Windows\CurrentVersion\Run');
+          if reg.ReadString('ZabbixTray')='' then chkAutorun.Checked:=False;
+          reg.closekey();
+        finally
+          reg.Free;
+        end;
+      except
+        chkAutorun.Checked:=False;
+      end;
+      if not chkAutorun.Checked then
+        chkAutorun.State:=cbGrayed;
+//        chkAutorun.AllowGrayed
+    end;
   finally
     ini.Free;
   end;

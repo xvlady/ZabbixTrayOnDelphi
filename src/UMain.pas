@@ -425,6 +425,7 @@ var
   Options       :Bool   ;
   EventData     :Bool   ;
   ShowStart     :Integer;
+  Interval      :Integer;
   i:Integer;
 begin
   FmaxError:=0;
@@ -443,6 +444,7 @@ begin
         ShowStart     :=ini.ReadInteger('Alarm','ShowFormOnStart',2   );
         ShowMain      :=ini.ReadInteger('Alarm','ShowMainForm'   ,3   );
         ShowBable     :=ini.ReadInteger('Alarm','ShowPopupMSG'   ,1   );
+        Interval      :=ini.ReadInteger('Main','Interval'        ,1   );
         ini.ReadSectionValues('EventTemplate',EventTemplates);
         for I := 0 to EventTemplates.Count-1 do
           EventTemplates[i]:=EventTemplates.ValueFromIndex[i];
@@ -464,13 +466,14 @@ begin
       exit
     end;
 
-      //'alefezt','alefezt','http://192.168.0.3/zabbix/'
-      zt:=TZt.Create(login,pswd,URL);
-      zt.url_up:=URLP;
-      statBar.Panels[0].Text:=zt.login;
-      statBar.Panels[1].Text:=zt.URL;
-      miOptions.Visible:=Options;
-      miSetMSG.Visible:=EventData;
+    //'alefezt','alefezt','http://192.168.0.3/zabbix/'
+    zt:=TZt.Create(login,pswd,URL);
+    zt.url_up:=URLP;
+    statBar.Panels[0].Text:=zt.login;
+    statBar.Panels[1].Text:=zt.URL;
+    miOptions.Visible:=Options;
+    miSetMSG.Visible:=EventData;
+    tmrZt.Interval:=Interval*60000;
 
 //  i:=xwFindColumnEh(g.Columns,SPriority);
 //  if i=-1 then raise Exception.Create('FindColumn(Priority)=nil');
@@ -487,8 +490,10 @@ begin
   btnConnectClick(nil);
   tmrZt.Enabled:=True;
   TrayIcon.Visible:=True;
-  if (FmaxError <>6) and (FmaxError>=ShowStart)
-  then miOpenClick(self);
+  if full then begin
+    if (FmaxError <>6) and (FmaxError>=ShowStart)
+    then miOpenClick(self);
+  end;
 end;
 
 procedure TfrmTZMain.Stop(const full:Boolean=True);

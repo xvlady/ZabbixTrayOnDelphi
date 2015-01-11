@@ -59,13 +59,15 @@
         <DCC_K>false</DCC_K>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <VerInfo_Release>2</VerInfo_Release>
+        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <PostBuildEvent><![CDATA[F:\APRG\ZabbixTray\bin\AfterBuild.bat
 $(PostBuildEvent)]]></PostBuildEvent>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_UsePackage>JvGlobus;JvMM;JvManagedThreads;FireDACSqliteDriver;DBXSqliteDriver;FireDACPgDriver;fmx;JvDlgs;IndySystem;frxe21;TeeDB;tethering;JvCrypt;DBXInterBaseDriver;frx21;AlphaDBDelphiXE7;JvNet;unidac210;JvDotNetCtrls;DbxCommonDriver;vclimg;dbxcds;MetropolisUILiveTile;JvXPCtrls;SynEdit_RXE6;vcldb;unidacfmx210;vcldsnap;EhLibADODataDrivers200;crcontrols210;fmxFireDAC;CustomIPTransport;JvCore;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;IndyIPCommon;CloudService;CodeSiteExpressPkg;FmxTeeUI;FireDACIBDriver;acntDelphiXE7_R;dac210;JvAppFrm;soapserver;JvDB;JvRuntimeDesign;inetdbxpress;dsnapxml;JclDeveloperTools;EhLib200;AlphaDBxwXE7;r1SynSpellCheckP_xe6;aceXE7_R;adortl;JvDocking;JvWizards;FireDACASADriver;JvHMI;bindcompfmx;JvBands;FireDACODBCDriver;RESTBackendComponents;emsclientfiredac;rtl;dbrtl;DbxClientDriver;DSPack_DXE2;FireDACCommon;bindcomp;inetdb;frxTee21;JvPluginSystem;Tee;JclContainers;frxDB21;vclFireDAC;JvCmp;JvSystem;xmlrtl;svnui;JvTimeFramework;JvControls;IndyProtocols;DBXMySQLDriver;FireDACCommonDriver;bindcompdbx;bindengine;vclactnband;soaprtl;FMXTee;TeeUI;bindcompvcl;JvStdCtrls;JvCustom;Jcl;vclie;JvJans;JvPageComps;JvPrintPreview;dacvcl210;FireDACADSDriver;vcltouch;emsclient;VCLRESTComponents;FireDAC;VclSmp;Intraweb;xwSubSystem;dsnapcon;inet;fmxobj;JclVcl;JvPascalInterpreter;FireDACMySQLDriver;soapmidas;vclx;unidacvcl210;svn;fmxdae;RESTComponents;FireDACMSAccDriver;dbexpress;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.2.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -80,14 +82,14 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Release>2</VerInfo_Release>
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_MapFile>3</DCC_MapFile>
         <Icon_MainIcon>..\img\favicon.ico</Icon_MainIcon>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Alef-E Ltd &amp; V.Khonin;FileDescription=ZabbixTray;FileVersion=1.0.1.0;InternalName=ZabbixTray.exe;LegalCopyright=Alef-E Ltd &amp; V.Khonin (c) 2014-2015;LegalTrademarks=;OriginalFilename=ZabbixTray.exe;ProductName=ZabbixTray;ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alef-E Ltd &amp; V.Khonin;FileDescription=ZabbixTray;FileVersion=1.0.2.0;InternalName=ZabbixTray.exe;LegalCopyright=Alef-E Ltd &amp; V.Khonin (c) 2014-2015;LegalTrademarks=;OriginalFilename=ZabbixTray.exe;ProductName=ZabbixTray;ProductVersion=1.0;Comments=</VerInfo_Keys>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -97,11 +99,11 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <VerInfo_Build>2</VerInfo_Build>
-        <VerInfo_Release>1</VerInfo_Release>
+        <VerInfo_Build>4</VerInfo_Build>
+        <VerInfo_Release>2</VerInfo_Release>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Keys>CompanyName=Alef-E Ltd &amp; V.Khonin;FileDescription=ZabbixTray;FileVersion=1.0.1.2;InternalName=ZabbixTray;LegalCopyright=Alef-E Ltd &amp; V.Khonin (c) 2014-2015;LegalTrademarks=;OriginalFilename=ZabbixTray.exe;ProductName=ZabbixTray;ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alef-E Ltd &amp; V.Khonin;FileDescription=ZabbixTray;FileVersion=1.0.2.4;InternalName=ZabbixTray;LegalCopyright=Alef-E Ltd &amp; V.Khonin (c) 2014-2015;LegalTrademarks=;OriginalFilename=ZabbixTray.exe;ProductName=ZabbixTray;ProductVersion=1.0;Comments=</VerInfo_Keys>
         <DCC_ExeOutput>..\bin\</DCC_ExeOutput>
         <Icon_MainIcon>..\img\favicon.ico</Icon_MainIcon>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -160,6 +162,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
                 </RDP_Source_Files>
             </Delphi.Personality>
             <Deployment>
+                <DeployFile LocalName="..\bin\ZabbixTray.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>ZabbixTray.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\ZabbixTray.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>ZabbixTray.exe</RemoteName>

@@ -113,7 +113,7 @@ object frmOptions: TfrmOptions
     Width = 118
     Height = 19
     Caption = 'View menu Options'
-    TabOrder = 3
+    TabOrder = 4
     SkinData.SkinSection = 'CHECKBOX'
     ImgChecked = 0
     ImgUnchecked = 0
@@ -124,7 +124,7 @@ object frmOptions: TfrmOptions
     Width = 100
     Height = 19
     Caption = 'Set Event Data'
-    TabOrder = 4
+    TabOrder = 5
     SkinData.SkinSection = 'CHECKBOX'
     ImgChecked = 0
     ImgUnchecked = 0
@@ -157,7 +157,7 @@ object frmOptions: TfrmOptions
     Font.Style = []
     ItemIndex = -1
     ParentFont = False
-    TabOrder = 6
+    TabOrder = 8
     OnDrawItem = cbbShowMainDrawItem
   end
   object pnlEditOk: TsPanel
@@ -167,7 +167,7 @@ object frmOptions: TfrmOptions
     Height = 37
     Align = alBottom
     BevelOuter = bvNone
-    TabOrder = 10
+    TabOrder = 12
     SkinData.SkinSection = 'PANEL'
     ExplicitTop = 157
     ExplicitWidth = 635
@@ -215,7 +215,7 @@ object frmOptions: TfrmOptions
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 10
     Text = 'edtURL'
     SkinData.SkinSection = 'EDIT'
     BoundLabel.Active = True
@@ -259,7 +259,7 @@ object frmOptions: TfrmOptions
     Font.Style = []
     ItemIndex = -1
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 9
     OnDrawItem = cbbShowMainDrawItem
   end
   object cbbShowStart: TsComboBox
@@ -290,7 +290,7 @@ object frmOptions: TfrmOptions
     Font.Style = []
     ItemIndex = -1
     ParentFont = False
-    TabOrder = 5
+    TabOrder = 7
     OnDrawItem = cbbShowMainDrawItem
   end
   object mmoTempl: TsMemo
@@ -306,7 +306,7 @@ object frmOptions: TfrmOptions
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 9
+    TabOrder = 11
     BoundLabel.Active = True
     BoundLabel.Caption = 'Template Event Message'
     BoundLabel.Indent = 0
@@ -321,6 +321,46 @@ object frmOptions: TfrmOptions
     SkinData.SkinSection = 'EDIT'
     ExplicitWidth = 636
     ExplicitHeight = 86
+  end
+  object chkAutorun: TsCheckBox
+    Left = 436
+    Top = 83
+    Width = 66
+    Height = 19
+    Caption = 'Autorun'
+    TabOrder = 6
+    SkinData.SkinSection = 'CHECKBOX'
+    ImgChecked = 0
+    ImgUnchecked = 0
+  end
+  object edtInterval: TsSpinEdit
+    Left = 435
+    Top = 56
+    Width = 199
+    Height = 21
+    Color = 15984326
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    SkinData.SkinSection = 'EDIT'
+    BoundLabel.Active = True
+    BoundLabel.Caption = 'Interval'
+    BoundLabel.Indent = 0
+    BoundLabel.Font.Charset = DEFAULT_CHARSET
+    BoundLabel.Font.Color = clWindowText
+    BoundLabel.Font.Height = -11
+    BoundLabel.Font.Name = 'Tahoma'
+    BoundLabel.Font.Style = []
+    BoundLabel.Layout = sclTopLeft
+    BoundLabel.MaxWidth = 0
+    BoundLabel.UseSkinColor = True
+    MaxValue = 0
+    MinValue = 0
+    Value = 0
   end
   object sSkinProvider1: TsSkinProvider
     AddedTitle.Font.Charset = DEFAULT_CHARSET
