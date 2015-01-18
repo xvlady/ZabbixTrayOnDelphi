@@ -1,0 +1,482 @@
+#  Doesn't have any letters
+#. frmTZMain..pmTray..miSep01..Caption
+#: UMain.dfm:265
+#. Programmer's name for it: StrOkSt
+#: UZT.pas:45
+msgid "-"
+msgstr ""
+
+#  Doesn't have any letters
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdWWEdits
+#: UMain.dfm:2909
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdVirtualTrees
+#: UMain.dfm:2910
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdNativePaint
+#: UMain.dfm:2921
+msgid " \n"
+msgstr ""
+
+#  Doesn't have any letters
+#. frmTZMain..qryMem..MemTableData..DataStruct..Check2..DisplayLabel
+#: UMain.dfm:286
+#. frmTZMain..qryMem..MemTableData..DataStruct..Check..DisplayLabel
+#: UMain.dfm:292
+msgid "!"
+msgstr ""
+
+#  Doesn't look like text
+#. frmTZMain..RegPropStorageManEh1..Path
+#: UMain.dfm:3119
+msgid "\\Software\\Alef-E\\ZabbixTray\\1\\"
+msgstr ""
+
+#  Seems like a Database field name or index field name
+#. frmTZMain..qryMem..MemTableData..DataStruct..Check..FieldName
+#: UMain.dfm:291
+msgid "Check"
+msgstr ""
+
+#  Doesn't look like text
+#. frmTZMain..qryMem..MemTableData..DataStruct..Check2..FieldName
+#: UMain.dfm:285
+#. frmSetMsg..g......FieldName
+#: USetMsg.dfm:132
+msgid "Check2"
+msgstr ""
+
+#  Seems like a Database field name or index field name
+#. frmTZMain..TS_Main..tsTab..g......FieldName
+#: UMain.dfm:117
+#. frmTZMain..qryMem..MemTableData..DataStruct..clock..FieldName
+#: UMain.dfm:366
+#. frmSetMsg..g......FieldName
+#: USetMsg.dfm:183
+msgid "clock"
+msgstr ""
+
+#  Seems like a Database field name or index field name
+#. frmTZMain..TS_Main..tsTab..g......FieldName
+#: UMain.dfm:130
+#. frmTZMain..qryMem..MemTableData..DataStruct..ET..FieldName
+#: UMain.dfm:371
+#. frmSetMsg..g......FieldName
+#: USetMsg.dfm:196
+msgid "ET"
+msgstr ""
+
+#  Seems like a Database field name or index field name
+#. frmTZMain..qryMem..MemTableData..DataStruct..EventID..FieldName
+#: UMain.dfm:354
+msgid "EventID"
+msgstr ""
+
+#  Seems like a Database field name or index field name
+#. frmTZMain..qryMem..MemTableData..DataStruct..hostid..FieldName
+#: UMain.dfm:327
+msgid "hostid"
+msgstr ""
+
+#  Doesn't look like text
+#. frmOptions..edtURL..TextHint
+#: UOptions.dfm:36
+msgid "http://192.168.0.1/zabbix/"
+msgstr ""
+
+#  Seems like a Database field name or index field name
+#. frmTZMain..qryMem..MemTableData..DataStruct..iteration..FieldName
+#: UMain.dfm:392
+msgid "iteration"
+msgstr ""
+
+#  Seems like a Database field name or index field name
+#. frmTZMain..TS_Main..tsTab..g......FieldName
+#: UMain.dfm:111
+#. frmTZMain..qryMem..MemTableData..DataStruct..Lastchange..FieldName
+#: UMain.dfm:342
+#. frmSetMsg..g......FieldName
+#: USetMsg.dfm:177
+msgid "Lastchange"
+msgstr ""
+
+#  Seems like a Database field name or index field name
+#. frmTZMain..TS_Main..tsTab..g......FieldName
+#: UMain.dfm:83
+#. frmTZMain..qryMem..MemTableData..DataStruct..priorityT..FieldName
+#: UMain.dfm:315
+#. frmSetMsg..g......FieldName
+#: USetMsg.dfm:140
+msgid "priorityT"
+msgstr ""
+
+#  Seems like a Database field name or index field name
+#. frmTZMain..TS_Main..tsTab..g......FieldName
+#: UMain.dfm:124
+#. frmTZMain..qryMem..MemTableData..DataStruct..T..FieldName
+#: UMain.dfm:348
+#. frmSetMsg..g......FieldName
+#: USetMsg.dfm:190
+msgid "T"
+msgstr ""
+
+#  Seems like a Font.Name extract
+#. frmTZMain..Font.Name
+#: UMain.dfm:11
+#. frmTZMain..TS_Main..tsLog..mmoText..Font.Name
+#: UMain.dfm:166
+#. frmTZMain..TS_Main..tsLog..mmoText..BoundLabel.Font.Name
+#: UMain.dfm:179
+#. frmTZMain..sSkinManager1..MenuSupport.ExtraLineFont.Name
+#: UMain.dfm:2891
+#. frmTZMain..sSkinProvider1..AddedTitle.Font.Name
+#: UMain.dfm:2929
+#. frmOptions..Font.Name
+#: UOptions.dfm:12
+#. frmOptions..edtURL..Font.Name
+#: UOptions.dfm:31
+#. frmOptions..edtURL..BoundLabel.Font.Name
+#: UOptions.dfm:44
+#. frmOptions..edtLogin..Font.Name
+#: UOptions.dfm:61
+#. frmOptions..edtLogin..BoundLabel.Font.Name
+#: UOptions.dfm:74
+#. frmOptions..edtPswd..Font.Name
+#: UOptions.dfm:91
+#. frmOptions..edtPswd..BoundLabel.Font.Name
+#: UOptions.dfm:103
+#. frmOptions..cbbShowMain..BoundLabel.Font.Name
+#: UOptions.dfm:144
+#. frmOptions..cbbShowMain..Font.Name
+#: UOptions.dfm:156
+#. frmOptions..edtURLP..Font.Name
+#: UOptions.dfm:215
+#. frmOptions..edtURLP..BoundLabel.Font.Name
+#: UOptions.dfm:227
+#. frmOptions..cbbShowBable..BoundLabel.Font.Name
+#: UOptions.dfm:246
+#. frmOptions..cbbShowBable..Font.Name
+#: UOptions.dfm:258
+#. frmOptions..cbbShowStart..BoundLabel.Font.Name
+#: UOptions.dfm:277
+#. frmOptions..cbbShowStart..Font.Name
+#: UOptions.dfm:289
+#. frmOptions..mmoTempl..Font.Name
+#: UOptions.dfm:306
+#. frmOptions..mmoTempl..BoundLabel.Font.Name
+#: UOptions.dfm:316
+#. frmOptions..edtInterval..Font.Name
+#: UOptions.dfm:345
+#. frmOptions..edtInterval..BoundLabel.Font.Name
+#: UOptions.dfm:356
+#. frmOptions..sSkinProvider1..AddedTitle.Font.Name
+#: UOptions.dfm:369
+#. frmSetMsg..Font.Name
+#: USetMsg.dfm:12
+#. frmSetMsg..cbbAddEventType..BoundLabel.Font.Name
+#: USetMsg.dfm:34
+#. frmSetMsg..cbbAddEventType..Font.Name
+#: USetMsg.dfm:46
+#. frmSetMsg..cbbMSG..BoundLabel.Font.Name
+#: USetMsg.dfm:232
+#. frmSetMsg..cbbMSG..Font.Name
+#: USetMsg.dfm:243
+#. frmSetMsg..sSkinProvider1..AddedTitle.Font.Name
+#: USetMsg.dfm:255
+msgid "Tahoma"
+msgstr ""
+
+#  Seems like a Database field name or index field name
+#. frmTZMain..qryMem..MemTableData..DataStruct..triggerid..FieldName
+#: UMain.dfm:297
+msgid "triggerid"
+msgstr ""
+
+#. frmTZMain..Caption
+#: UMain.dfm:4
+#. frmTZMain..trayIcon..Hint
+#: UMain.dfm:192
+#. frmTZMain..trayIcon..BalloonTitle
+#: UMain.dfm:193
+msgid "ZabbixTray"
+msgstr ""
+
+#. frmOptions..pnlEditOk..btnOk..SkinData.SkinSection
+#: UOptions.dfm:178
+#. frmOptions..pnlEditOk..btnCancel..SkinData.SkinSection
+#: UOptions.dfm:192
+#. frmSetMsg..pnlEditOk..btnOk..SkinData.SkinSection
+#: USetMsg.dfm:74
+#. frmSetMsg..pnlEditOk..btnCancel..SkinData.SkinSection
+#: USetMsg.dfm:88
+msgid "BUTTON"
+msgstr ""
+
+#. frmTZMain..mmoText..SkinData.SkinSection
+#: UMain.dfm:189
+#. frmOptions..edtURL..SkinData.SkinSection
+#: UOptions.dfm:36
+#. frmOptions..edtLogin..SkinData.SkinSection
+#: UOptions.dfm:64
+#. frmOptions..edtPswd..SkinData.SkinSection
+#: UOptions.dfm:91
+#. frmOptions..edtURLP..SkinData.SkinSection
+#: UOptions.dfm:210
+#. frmOptions..mmoTempl..SkinData.SkinSection
+#: UOptions.dfm:310
+#. frmOptions..edtInterval..SkinData.SkinSection
+#: UOptions.dfm:336
+msgid "EDIT"
+msgstr ""
+
+#. frmOptions..chkOptions..SkinData.SkinSection
+#: UOptions.dfm:111
+#. frmOptions..chkEventData..SkinData.SkinSection
+#: UOptions.dfm:122
+#. frmOptions..chkAutorun..SkinData.SkinSection
+#: UOptions.dfm:319
+msgid "CHECKBOX"
+msgstr ""
+
+#. frmOptions..cbbShowMain..SkinData.SkinSection
+#: UOptions.dfm:143
+#. frmOptions..cbbShowBable..SkinData.SkinSection
+#: UOptions.dfm:240
+#. frmOptions..cbbShowStart..SkinData.SkinSection
+#: UOptions.dfm:271
+#. frmSetMsg..cbbAddEventType..SkinData.SkinSection
+#: USetMsg.dfm:39
+#. frmSetMsg..cbbMSG..SkinData.SkinSection
+#: USetMsg.dfm:232
+msgid "COMBOBOX"
+msgstr ""
+
+#. frmOptions..pnlEditOk..SkinData.SkinSection
+#: UOptions.dfm:165
+#. frmSetMsg..pnlEditOk..SkinData.SkinSection
+#: USetMsg.dfm:61
+msgid "PANEL"
+msgstr ""
+
+#. frmTZMain..sSkinManager1......Name
+#: UMain.dfm:406
+#. frmTZMain..sSkinManager1..SkinName
+#: UMain.dfm:2889
+msgid "Moonlight (internal)"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..MenuSupport.IcoLineSkin
+#: UMain.dfm:2882
+msgid "ICOLINE"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..SkinDirectory
+#: UMain.dfm:2888
+msgid "c:\\Skins"
+msgstr ""
+
+#. frmTZMain..sSkinManager1....ThirdParty.ThirdEdits
+#: UMain.dfm:2894
+msgid "TEdit\n"
+"TMemo\n"
+"TMaskEdit\n"
+"TSpinEdit\n"
+"TLabeledEdit\n"
+"THotKey\n"
+"TListBox\n"
+"TCheckListBox\n"
+"TRichEdit\n"
+"TDateTimePicker\n"
+"TCategoryButtons\n"
+"TFileListBox\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdButtons
+#: UMain.dfm:2895
+msgid "TButton\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdBitBtns
+#: UMain.dfm:2896
+msgid "TBitBtn\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdCheckBoxes
+#: UMain.dfm:2897
+msgid "TCheckBox\n"
+"TRadioButton\n"
+"TGroupButton\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdGroupBoxes
+#: UMain.dfm:2898
+msgid "TGroupBox\n"
+"TRadioGroup\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdListViews
+#: UMain.dfm:2899
+msgid "TListView\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdPanels
+#: UMain.dfm:2900
+msgid "TPanel\n"
+"TPage\n"
+"TGridPanel\n"
+"TTabPage\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdGrids
+#: UMain.dfm:2901
+msgid "TStringGrid\n"
+"TDrawGrid\n"
+"TValueListEditor\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdTreeViews
+#: UMain.dfm:2902
+msgid "TTreeView\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdComboBoxes
+#: UMain.dfm:2903
+msgid "TComboBox\n"
+"TComboBoxEx\n"
+"TColorBox\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdGridEh
+#: UMain.dfm:2906
+msgid "TDBGridEh\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdPageControl
+#: UMain.dfm:2907
+msgid "TPageControl\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdTabControl
+#: UMain.dfm:2908
+msgid "TTabControl\n"
+"TTabbedNotebook\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdToolBar
+#: UMain.dfm:2909
+msgid "TToolBar\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdStatusBar
+#: UMain.dfm:2910
+msgid "TStatusBar\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdSpeedButton
+#: UMain.dfm:2911
+msgid "TSpeedButton\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdScrollControl
+#: UMain.dfm:2912
+msgid "TScrollBox\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdUpDown
+#: UMain.dfm:2913
+msgid "TSpinButton\n"
+"TUpDown\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdScrollBar
+#: UMain.dfm:2914
+msgid "TScrollBar\n"
+msgstr ""
+
+#. frmTZMain..sSkinManager1..ThirdParty.ThirdStaticText
+#: UMain.dfm:2915
+msgid "TStaticText\n"
+msgstr ""
+
+#. frmTZMain..sSkinProvider1..SkinData.SkinSection
+#: UMain.dfm:2926
+#. frmOptions..sSkinProvider1..SkinData.SkinSection
+#: UOptions.dfm:358
+#. frmSetMsg..sSkinProvider1..SkinData.SkinSection
+#: USetMsg.dfm:251
+msgid "FORM"
+msgstr ""
+
+#. frmTZMain..mmMain..miZabbix..Caption
+#: UMain.dfm:2936
+msgid "Zabbix"
+msgstr ""
+
+#. frmTZMain..PropStorageEh1..Section
+#: UMain.dfm:3124
+msgid "Main"
+msgstr ""
+
+#. frmTZMain..PropStorageEh1....StoredProps.Strings
+#: UMain.dfm:3127
+#. frmSetMsg..PropStorageEh1....StoredProps.Strings
+#: USetMsg.dfm:260
+msgid "<P>.Height"
+msgstr ""
+
+#. frmTZMain..PropStorageEh1....StoredProps.Strings
+#: UMain.dfm:3128
+#. frmSetMsg..PropStorageEh1....StoredProps.Strings
+#: USetMsg.dfm:261
+msgid "<P>.Left"
+msgstr ""
+
+#. frmTZMain..PropStorageEh1....StoredProps.Strings
+#: UMain.dfm:3129
+#. frmSetMsg..PropStorageEh1....StoredProps.Strings
+#: USetMsg.dfm:262
+msgid "<P>.PixelsPerInch"
+msgstr ""
+
+#. frmTZMain..PropStorageEh1....StoredProps.Strings
+#: UMain.dfm:3130
+#. frmSetMsg..PropStorageEh1....StoredProps.Strings
+#: USetMsg.dfm:263
+msgid "<P>.Top"
+msgstr ""
+
+#. frmTZMain..PropStorageEh1....StoredProps.Strings
+#: UMain.dfm:3131
+#. frmSetMsg..PropStorageEh1....StoredProps.Strings
+#: USetMsg.dfm:264
+msgid "<P>.Width"
+msgstr ""
+
+#. frmTZMain..PropStorageEh1....StoredProps.Strings
+#: UMain.dfm:3132
+msgid "TS_Main.tsTab.g.<P>.Columns.ColumnsIndex"
+msgstr ""
+
+#. frmTZMain..PropStorageEh1....StoredProps.Strings
+#: UMain.dfm:3133
+msgid "TS_Main.tsTab.g.<P>.Columns.<ForAllItems>.Width"
+msgstr ""
+
+#. frmSetMsg..PropStorageEh1..Section
+#: USetMsg.dfm:257
+msgid "SetMSG"
+msgstr ""
+
+#. frmSetMsg..PropStorageEh1....StoredProps.Strings
+#: USetMsg.dfm:265
+msgid "g.<P>.Columns.ColumnsIndex"
+msgstr ""
+
+#. frmSetMsg..PropStorageEh1....StoredProps.Strings
+#: USetMsg.dfm:266
+msgid "g.<P>.Columns.<ForAllItems>.Width"
+msgstr ""
+
+#. frmTZMain..RegPropStorageManEh1..Path
+#: UMain.dfm:3127 
+msgid "\\Software\\Alef-E\\ZabbixTray\\3\\"
+msgstr ""
+

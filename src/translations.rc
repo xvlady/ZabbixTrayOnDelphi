@@ -1,0 +1,2 @@
+LOCALE_RU_DEFAULT RCDATA "..\bin\locale\ru\LC_MESSAGES\default.mo"
+LOCALE_RU_LANGUAGES RCDATA "..\bin\locale\ru\LC_MESSAGES\languages.mo"

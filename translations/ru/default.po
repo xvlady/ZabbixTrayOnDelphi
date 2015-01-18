@@ -1,0 +1,379 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2015-01-18 23:59\n"
+"PO-Revision-Date: 2015-01-19 00:14+0500\n"
+"Last-Translator: xVlady <xw@ya.ru>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.3\n"
+"Language: ru\n"
+
+#. frmTZMain..g..EmptyDataInfo.Text
+#: UMain.dfm:60
+msgid "Ok!    "
+msgstr "Всё хорошо!"
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Priority..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Priority..DisplayLabel
+#. frmTZMain..qryMem..MemTableData..DataStruct..priorityT..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:76
+msgid "Priority"
+msgstr "Приоритет"
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Error..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Error..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:84
+msgid "Error"
+msgstr "Ошибка"
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Host..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Host..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:99
+msgid "Host"
+msgstr "Хост (Сервер)"
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Description..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Description..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:106
+msgid "Description"
+msgstr "Описание"
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Message..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Message..DisplayLabel
+#. frmSetMsg..g......FieldName
+#. frmSetMsg..cbbMSG..BoundLabel.Caption
+#: UMain.dfm:113
+msgid "Message"
+msgstr "Сообщение"
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Comments..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Comments..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:147
+msgid "Comments"
+msgstr "Комментарий"
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..User..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..User..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:155
+msgid "User"
+msgstr "Админ"
+
+#. frmTZMain..pmTray..miOpen..Caption
+#: UMain.dfm:247
+msgid "Open"
+msgstr "Открыть"
+
+#. frmTZMain..pmTray..miRefreshPM..Caption
+#. frmTZMain..mmMain..miRefresh..Caption
+#: UMain.dfm:254
+msgid "Refresh"
+msgstr "Обновить данные"
+
+#. frmTZMain..pmTray..miExitPM..Caption
+#. frmTZMain..mmMain..miExit..Caption
+#: UMain.dfm:258
+msgid "Exit"
+msgstr "Выход"
+
+#. frmTZMain..qryMem..MemTableData..DataStruct..triggerid..DisplayLabel
+#: UMain.dfm:285
+msgid "triggerId"
+msgstr ""
+
+#. frmTZMain..qryMem..MemTableData..DataStruct..Lastchange..DisplayLabel
+#: UMain.dfm:331
+msgid "Last Change"
+msgstr "Дата события"
+
+#. frmTZMain..qryMem..MemTableData..DataStruct..T..DisplayLabel
+#. frmTZMain..qryMem..MemTableData..DataStruct..ET..DisplayLabel
+#: UMain.dfm:337
+msgid "Time"
+msgstr "Длительность"
+
+#. frmTZMain..qryMem..MemTableData..DataStruct..clock..DisplayLabel
+#: UMain.dfm:357
+msgid "Clock"
+msgstr "Дата сообщения"
+
+#. frmTZMain..qryMem..MemTableData..DataStruct..step..FieldName
+#: UMain.dfm:388
+msgid "step"
+msgstr "Шаг"
+
+#. frmTZMain..mmMain..miLang..Caption
+#: UMain.dfm:2951
+msgid "Language"
+msgstr "Язык"
+
+#. frmTZMain..mmMain..miOptions..Caption
+#. frmOptions..Caption
+#: UMain.dfm:2955
+msgid "Options"
+msgstr "Настройки"
+
+#. frmTZMain..mmMain..miShowLog..Caption
+#: UMain.dfm:2959
+msgid "Log"
+msgstr "Лог"
+
+#. frmTZMain..pmG..miSetMSG..Caption
+#: UMain.dfm:3125
+msgid "SetMessage"
+msgstr "Сообщение"
+
+#. frmOptions..edtURL..BoundLabel.Caption
+#: UOptions.dfm:38
+msgid "Zabbix root URL"
+msgstr "Корневой URL Zabbix"
+
+#. frmOptions..edtLogin..TextHint
+#: UOptions.dfm:63
+msgid "UserZabbix"
+msgstr "Zabbix-Пользователь"
+
+#. frmOptions..edtLogin..BoundLabel.Caption
+#: UOptions.dfm:66
+msgid "Login"
+msgstr "Логин"
+
+#. frmOptions..edtPswd..BoundLabel.Caption
+#: UOptions.dfm:93
+msgid "Password"
+msgstr "Пароль"
+
+#. frmOptions..chkOptions..Caption
+#: UOptions.dfm:109
+msgid "View menu Options"
+msgstr "Показывать меню настроек"
+
+#. frmOptions..chkEventData..Caption
+#: UOptions.dfm:120
+msgid "Set Ack"
+msgstr "Послать сообщение \"Я видел\""
+
+#. frmOptions..cbbShowMain..BoundLabel.Caption
+#: UOptions.dfm:133
+msgid "Show MainForm if find events"
+msgstr "Показывать, если событие уровня:"
+
+#. frmOptions..pnlEditOk..btnOk..Caption
+#. frmSetMsg..pnlEditOk..btnOk..Caption
+#: UOptions.dfm:173
+msgid "&Ok"
+msgstr "&Ок"
+
+#. frmOptions..pnlEditOk..btnCancel..Caption
+#. frmSetMsg..pnlEditOk..btnCancel..Caption
+#: UOptions.dfm:187
+msgid "&Cancel"
+msgstr "О&тмена"
+
+#. frmOptions..edtURLP..BoundLabel.Caption
+#: UOptions.dfm:212
+msgid "URL for click menu Zabbix (default = Zabbix root URL)"
+msgstr "Ссылка для пользователя, если он вызывает Zabbix меню (Если не задано, то ссылка на корень Zabbix заданный выше)"
+
+#. frmOptions..cbbShowBable..BoundLabel.Caption
+#: UOptions.dfm:230
+msgid "Show popup message"
+msgstr "Всплывающее сообщение, если:"
+
+#. frmOptions..cbbShowStart..BoundLabel.Caption
+#: UOptions.dfm:261
+msgid "Show Main Form on Start if have events"
+msgstr "Показывать при старте, если есть:"
+
+#. frmOptions..mmoTempl..BoundLabel.Caption
+#: UOptions.dfm:300
+msgid "Template Ack Message from Event"
+msgstr "Шаблоны ответов для сообщения \"Я видел\""
+
+#. frmOptions..chkAutorun..Caption
+#: UOptions.dfm:317
+msgid "Autorun"
+msgstr "Автоматический запуск"
+
+#. frmOptions..edtInterval..BoundLabel.Caption
+#: UOptions.dfm:338
+msgid "Interval"
+msgstr "Интервал опроса сервера"
+
+#. frmSetMsg..Caption
+#: USetMsg.dfm:5
+msgid "Set Event Message"
+msgstr "Отправить сообщение \"Я видел\" и расширенный комментарий по нему"
+
+#. frmSetMsg..cbbAddEventType..BoundLabel.Caption
+#: USetMsg.dfm:29
+msgid "Status"
+msgstr "Статус"
+
+#. Programmer's name for it: StrStartEditOptions
+#: UMain.pas:110
+msgid "Start edit Options? (or exit)"
+msgstr "Отредактировать настройки или выйти?"
+
+#. Programmer's name for it: StrNotFond
+#: UMain.pas:111
+msgid "Not fond!"
+msgstr "Не найден"
+
+#. Programmer's name for it: StrD
+#: UMain.pas:112
+msgid "d"
+msgstr "д"
+
+#. Programmer's name for it: StrH
+#: UMain.pas:113
+msgid "h"
+msgstr "ч"
+
+#. Programmer's name for it: StrM
+#: UMain.pas:114
+msgid "m"
+msgstr "м"
+
+#. Programmer's name for it: StrNoConnection
+#: UMain.pas:115
+msgid "No Connection"
+msgstr "Нет связи"
+
+#. Programmer's name for it: StrDontOpenRegistry
+#: UOptions.pas:48
+msgid "Don't Open Registry Key "
+msgstr "не могу открыть ключ реестра windows"
+
+#. Programmer's name for it: StrCallMe
+#: UOptions.pas:49
+msgid "Call me"
+msgstr "Позвоните мне"
+
+#. Programmer's name for it: StrThisIsNoProblem
+#: UOptions.pas:50
+msgid "This is no problem"
+msgstr "Это не проблема (ложное срабатывание)"
+
+#. Programmer's name for it: StrIDoThisTask
+#: UOptions.pas:51
+msgid "I do this task"
+msgstr "Я видел и работаю над задачей"
+
+#. Programmer's name for it: StrWaitNextEvents
+#: UOptions.pas:52
+msgid "Wait next events"
+msgstr "Ждём следующих срабатываний мониторинга"
+
+#. Programmer's name for it: StrOk
+#: UOptions.pas:53
+msgid "Ok"
+msgstr "Ок"
+
+#. Адрес по которому посылать пользователя
+#. Programmer's name for it: StrNone
+#: UZT.pas:41
+msgid "None"
+msgstr "Нет"
+
+#. Programmer's name for it: StrInformation
+#: UZT.pas:42
+msgid "Information"
+msgstr "Информация"
+
+#. Programmer's name for it: StrWarning
+#: UZT.pas:43
+msgid "Warning"
+msgstr "Предупреждение"
+
+#. Programmer's name for it: StrAverage
+#: UZT.pas:44
+msgid "Average"
+msgstr "Авария"
+
+#. Programmer's name for it: StrHigh
+#: UZT.pas:45
+msgid "High"
+msgstr "Критичная"
+
+#. Programmer's name for it: StrDisaster
+#: UZT.pas:46
+msgid "Disaster"
+msgstr "Не отложно"
+
+#. Programmer's name for it: StrAction
+#: UZT.pas:48
+msgid "Requires user action"
+msgstr "Нужны ваши действия"
+
+#. Programmer's name for it: StrNotActive
+#: UZT.pas:49
+msgid "False Alarm"
+msgstr "Ложное срабатывание"
+
+#. Programmer's name for it: StrInWork
+#: UZT.pas:50
+msgid "In Progress"
+msgstr "В процессе"
+
+#. Programmer's name for it: StrQuest
+#: UZT.pas:51
+msgid "Specified"
+msgstr "Уточняется"
+
+#. Programmer's name for it: StrOkEvent
+#: UZT.pas:52
+msgid "Corrected"
+msgstr "Решено"
+
+#. Programmer's name for it: StrOkOther
+#: UZT.pas:53
+msgid "Other"
+msgstr "Прочее"
+
+#. Programmer's name for it: StrUnknowResult
+#: UZT.pas:96
+msgid "Unknow result:"
+msgstr "Не известный результат"
+
+#. Programmer's name for it: StrErrorConnectionData
+#: UZT.pas:97
+msgid "Error Connection Data"
+msgstr "Ожибка соединения"
+
+#. Programmer's name for it: StrOtherErrorConnecti
+#: UZT.pas:98
+msgid "Other Error Connection"
+msgstr "Прочая ошибка"
+
+#. Programmer's name for it: StrLoginError
+#: UZT.pas:99
+msgid "Login error"
+msgstr "Ошибка авторизации (не коретный логин или пароль?)"
+
+#, fuzzy
+#~ msgid "Resfresh"
+#~ msgstr "Обновить данные"
+
+#~ msgid "Issues dashboard"
+#~ msgstr "Активные события мониторинга"

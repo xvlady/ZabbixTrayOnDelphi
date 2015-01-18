@@ -32,7 +32,6 @@ object frmOptions: TfrmOptions
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    Text = 'edtURL'
     TextHint = 'http://192.168.0.1/zabbix/'
     SkinData.SkinSection = 'EDIT'
     BoundLabel.Active = True
@@ -46,7 +45,6 @@ object frmOptions: TfrmOptions
     BoundLabel.Layout = sclTopLeft
     BoundLabel.MaxWidth = 0
     BoundLabel.UseSkinColor = True
-    ExplicitWidth = 619
   end
   object edtLogin: TsEdit
     Left = 8
@@ -62,8 +60,7 @@ object frmOptions: TfrmOptions
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    Text = 'edtURL'
-    TextHint = 'UserZabbixTray'
+    TextHint = 'UserZabbix'
     SkinData.SkinSection = 'EDIT'
     BoundLabel.Active = True
     BoundLabel.Caption = 'Login'
@@ -76,7 +73,6 @@ object frmOptions: TfrmOptions
     BoundLabel.Layout = sclTopLeft
     BoundLabel.MaxWidth = 0
     BoundLabel.UseSkinColor = True
-    ExplicitWidth = 209
   end
   object edtPswd: TsEdit
     Left = 223
@@ -92,7 +88,6 @@ object frmOptions: TfrmOptions
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    Text = 'edtURL'
     SkinData.SkinSection = 'EDIT'
     BoundLabel.Active = True
     BoundLabel.Caption = 'Password'
@@ -105,7 +100,6 @@ object frmOptions: TfrmOptions
     BoundLabel.Layout = sclTopLeft
     BoundLabel.MaxWidth = 0
     BoundLabel.UseSkinColor = True
-    ExplicitWidth = 209
   end
   object chkOptions: TsCheckBox
     Left = 16
@@ -121,9 +115,9 @@ object frmOptions: TfrmOptions
   object chkEventData: TsCheckBox
     Left = 223
     Top = 83
-    Width = 100
+    Width = 63
     Height = 19
-    Caption = 'Set Event Data'
+    Caption = 'Set Ack'
     TabOrder = 5
     SkinData.SkinSection = 'CHECKBOX'
     ImgChecked = 0
@@ -136,7 +130,7 @@ object frmOptions: TfrmOptions
     Height = 22
     Alignment = taLeftJustify
     BoundLabel.Active = True
-    BoundLabel.Caption = 'Show MainForm'
+    BoundLabel.Caption = 'Show MainForm if find events'
     BoundLabel.Indent = 0
     BoundLabel.Font.Charset = DEFAULT_CHARSET
     BoundLabel.Font.Color = clWindowText
@@ -169,8 +163,6 @@ object frmOptions: TfrmOptions
     BevelOuter = bvNone
     TabOrder = 12
     SkinData.SkinSection = 'PANEL'
-    ExplicitTop = 157
-    ExplicitWidth = 635
     object btnOk: TsButton
       AlignWithMargins = True
       Left = 419
@@ -178,13 +170,12 @@ object frmOptions: TfrmOptions
       Width = 107
       Height = 31
       Align = alRight
-      Caption = '&'#1054'k'
+      Caption = '&Ok'
       ImageIndex = 10
       Images = DMImg.ilBtn16
       TabOrder = 0
       OnClick = btnOkClick
       SkinData.SkinSection = 'BUTTON'
-      ExplicitLeft = 412
     end
     object btnCancel: TsButton
       AlignWithMargins = True
@@ -193,13 +184,13 @@ object frmOptions: TfrmOptions
       Width = 107
       Height = 31
       Align = alRight
-      Caption = #1054'&'#1090#1084#1077#1085#1072
+      Caption = '&Cancel'
       ImageIndex = 11
       Images = DMImg.ilBtn16
       TabOrder = 1
       OnClick = btnCancelClick
       SkinData.SkinSection = 'BUTTON'
-      ExplicitLeft = 525
+      ExplicitTop = 0
     end
   end
   object edtURLP: TsEdit
@@ -216,7 +207,6 @@ object frmOptions: TfrmOptions
     Font.Style = []
     ParentFont = False
     TabOrder = 10
-    Text = 'edtURL'
     SkinData.SkinSection = 'EDIT'
     BoundLabel.Active = True
     BoundLabel.Caption = 'URL for click menu Zabbix (default = Zabbix root URL)'
@@ -229,7 +219,6 @@ object frmOptions: TfrmOptions
     BoundLabel.Layout = sclTopLeft
     BoundLabel.MaxWidth = 0
     BoundLabel.UseSkinColor = True
-    ExplicitWidth = 629
   end
   object cbbShowBable: TsComboBox
     Left = 436
@@ -308,7 +297,7 @@ object frmOptions: TfrmOptions
     ParentFont = False
     TabOrder = 11
     BoundLabel.Active = True
-    BoundLabel.Caption = 'Template Event Message'
+    BoundLabel.Caption = 'Template Ack Message from Event'
     BoundLabel.Indent = 0
     BoundLabel.Font.Charset = DEFAULT_CHARSET
     BoundLabel.Font.Color = clWindowText
@@ -319,8 +308,6 @@ object frmOptions: TfrmOptions
     BoundLabel.MaxWidth = 0
     BoundLabel.UseSkinColor = True
     SkinData.SkinSection = 'EDIT'
-    ExplicitWidth = 636
-    ExplicitHeight = 86
   end
   object chkAutorun: TsCheckBox
     Left = 436

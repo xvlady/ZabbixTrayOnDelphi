@@ -1,16 +1,23 @@
 // JCL_DEBUG_EXPERT_GENERATEJDBG OFF
 program ZabbixTray;
 
+{$I DEFTEXT.inc}
+
+{$R 'translations.res' 'translations.rc'}
+
 uses
   Vcl.Forms,
   windows,
   UMain in 'UMain.pas' {frmTZMain},
-  httpsend in 'F:\comp\synapse\source\lib\httpsend.pas',
   UZT in 'UZT.pas',
   UOptions in 'UOptions.pas' {frmOptions},
-  USetMsg in 'USetMsg.pas' {frmSetMsg};
+  USetMsg in 'USetMsg.pas' {frmSetMsg},
+  JvGnugettext in 'Gnugettext\JvGnugettext.pas',
+  languagecodes in 'Gnugettext\languagecodes.pas';
 
 {$R *.res}
+
+
 
 //var
 //  mhApp: THandle;
@@ -42,7 +49,7 @@ begin
 ////end;
 //  //Application.MainFormOnTaskbar := True;
 //  else
-    Application.CreateForm(TfrmTZMain, frmTZMain);
+  Application.CreateForm(TfrmTZMain, frmTZMain);
   Application.Title:='ZabbixTray';
   Application.Run;
 end.

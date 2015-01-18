@@ -17,175 +17,6 @@ object frmTZMain: TfrmTZMain
   OnDestroy = FormDestroy
   PixelsPerInch = 96
   TextHeight = 13
-  object TS_Main: TsPageControl
-    Left = 0
-    Top = 0
-    Width = 783
-    Height = 391
-    ActivePage = tsTab
-    Align = alClient
-    TabOrder = 0
-    SkinData.SkinSection = 'PAGECONTROL'
-    ExplicitTop = 8
-    object tsTab: TsTabSheet
-      Caption = 'Active'
-      SkinData.CustomColor = False
-      SkinData.CustomFont = False
-      object g: TDBGridEh
-        Left = 0
-        Top = 0
-        Width = 775
-        Height = 363
-        Align = alClient
-        AllowedOperations = []
-        AutoFitColWidths = True
-        ColumnDefValues.Title.TitleButton = True
-        ColumnDefValues.Title.ToolTips = True
-        ColumnDefValues.ToolTips = True
-        DataSource = dsMem
-        DynProps = <>
-        Flat = True
-        FrozenCols = 3
-        IndicatorOptions = [gioShowRowIndicatorEh]
-        EmptyDataInfo.Active = True
-        EmptyDataInfo.Text = #1042#1089#1105' '#1061#1086#1088#1086#1096#1086'!'
-        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgMultiSelect]
-        OptionsEh = [dghFixed3D, dghResizeWholeRightPart, dghHighlightFocus, dghClearSelection, dghFitRowHeightToText, dghAutoSortMarking, dghMultiSortMarking, dghTraceColSizing, dghIncSearch, dghRowHighlight, dghDblClickOptimizeColWidth, dghColumnResize, dghColumnMove, dghAutoFitRowHeight, dghExtendVertLines]
-        PopupMenu = pmG
-        ReadOnly = True
-        RowHeight = 2
-        RowLines = 1
-        RowPanel.Active = True
-        SortLocal = True
-        TabOrder = 0
-        TitleParams.Images = ilTr
-        OnGetCellParams = gGetCellParams
-        Columns = <
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'Priority'
-            Footers = <>
-            Title.ImageIndex = 1
-            Width = 20
-          end
-          item
-            Alignment = taRightJustify
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'User'
-            Footers = <>
-            Width = 183
-            InRowLinePos = 1
-          end
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'priorityT'
-            Footers = <>
-            Width = 81
-          end
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'Host'
-            Footers = <>
-            Width = 80
-          end
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'Description'
-            Footers = <>
-          end
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'Message'
-            Footers = <>
-            Width = 304
-            InRowLinePos = 1
-          end
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'Lastchange'
-            Footers = <>
-          end
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'clock'
-            Footers = <>
-            InRowLinePos = 1
-          end
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'T'
-            Footers = <>
-          end
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'ET'
-            Footers = <>
-            InRowLinePos = 1
-          end
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'Comments'
-            Footers = <>
-            Width = 65
-          end
-          item
-            DynProps = <>
-            EditButtons = <>
-            FieldName = 'Error'
-            Footers = <>
-            Width = 65
-            InRowLinePos = 1
-          end>
-        object RowDetailData: TRowDetailPanelControlEh
-        end
-      end
-    end
-    object tsLog: TsTabSheet
-      Caption = 'Log'
-      SkinData.CustomColor = False
-      SkinData.CustomFont = False
-      object mmoText: TsMemo
-        Left = 0
-        Top = 0
-        Width = 775
-        Height = 363
-        Align = alClient
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        Lines.Strings = (
-          'mmoText')
-        ParentFont = False
-        ReadOnly = True
-        ScrollBars = ssVertical
-        TabOrder = 0
-        Text = 'mmoText'
-        BoundLabel.Indent = 0
-        BoundLabel.Font.Charset = DEFAULT_CHARSET
-        BoundLabel.Font.Color = clWindowText
-        BoundLabel.Font.Height = -11
-        BoundLabel.Font.Name = 'Tahoma'
-        BoundLabel.Font.Style = []
-        BoundLabel.Layout = sclLeft
-        BoundLabel.MaxWidth = 0
-        BoundLabel.UseSkinColor = True
-        SkinData.SkinSection = 'EDIT'
-      end
-    end
-  end
   object statBar: TStatusBar
     Left = 0
     Top = 391
@@ -202,9 +33,163 @@ object frmTZMain: TfrmTZMain
         Width = 50
       end>
   end
+  object g: TDBGridEh
+    Left = 0
+    Top = 0
+    Width = 783
+    Height = 288
+    Align = alClient
+    AllowedOperations = []
+    AutoFitColWidths = True
+    ColumnDefValues.Title.TitleButton = True
+    ColumnDefValues.Title.ToolTips = True
+    ColumnDefValues.ToolTips = True
+    DataSource = dsMem
+    DynProps = <>
+    Flat = True
+    FrozenCols = 3
+    IndicatorOptions = [gioShowRowIndicatorEh]
+    EmptyDataInfo.Active = True
+    EmptyDataInfo.Font.Charset = DEFAULT_CHARSET
+    EmptyDataInfo.Font.Color = clMoneyGreen
+    EmptyDataInfo.Font.Height = -96
+    EmptyDataInfo.Font.Name = 'Tahoma'
+    EmptyDataInfo.Font.Orientation = 100
+    EmptyDataInfo.Font.Style = []
+    EmptyDataInfo.ParentFont = False
+    EmptyDataInfo.Text = 'Ok!    '
+    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgMultiSelect]
+    OptionsEh = [dghFixed3D, dghResizeWholeRightPart, dghHighlightFocus, dghClearSelection, dghFitRowHeightToText, dghAutoSortMarking, dghMultiSortMarking, dghTraceColSizing, dghIncSearch, dghRowHighlight, dghDblClickOptimizeColWidth, dghColumnResize, dghColumnMove, dghAutoFitRowHeight, dghExtendVertLines]
+    PopupMenu = pmG
+    ReadOnly = True
+    RowHeight = 2
+    RowLines = 1
+    RowPanel.Active = True
+    SortLocal = True
+    TabOrder = 0
+    TitleParams.Images = ilTr
+    OnGetCellParams = gGetCellParams
+    Columns = <
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'Priority'
+        Footers = <>
+        Title.ImageIndex = 1
+        Width = 20
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'Error'
+        Footers = <>
+        Width = 183
+        InRowLinePos = 1
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'priorityT'
+        Footers = <>
+        Width = 81
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'Host'
+        Footers = <>
+        Width = 80
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'Description'
+        Footers = <>
+        Width = 309
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'Message'
+        Footers = <>
+        Width = 309
+        InRowLinePos = 1
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'Lastchange'
+        Footers = <>
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'clock'
+        Footers = <>
+        InRowLinePos = 1
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'T'
+        Footers = <>
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'ET'
+        Footers = <>
+        InRowLinePos = 1
+      end
+      item
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'Comments'
+        Footers = <>
+        Width = 104
+      end
+      item
+        Alignment = taRightJustify
+        DynProps = <>
+        EditButtons = <>
+        FieldName = 'User'
+        Footers = <>
+        Width = 104
+        InRowLinePos = 1
+      end>
+    object RowDetailData: TRowDetailPanelControlEh
+    end
+  end
+  object mmoText: TsMemo
+    Left = 0
+    Top = 288
+    Width = 783
+    Height = 103
+    Align = alBottom
+    Color = 15984326
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    ReadOnly = True
+    ScrollBars = ssVertical
+    TabOrder = 1
+    Visible = False
+    BoundLabel.Indent = 0
+    BoundLabel.Font.Charset = DEFAULT_CHARSET
+    BoundLabel.Font.Color = clWindowText
+    BoundLabel.Font.Height = -11
+    BoundLabel.Font.Name = 'Tahoma'
+    BoundLabel.Font.Style = []
+    BoundLabel.Layout = sclLeft
+    BoundLabel.MaxWidth = 0
+    BoundLabel.UseSkinColor = True
+    SkinData.SkinSection = 'EDIT'
+  end
   object trayIcon: TTrayIcon
     Hint = 'ZabbixTray'
-    BalloonHint = 'lllaa!'
     BalloonTitle = 'ZabbixTray'
     Icon.Data = {
       0000010001001010000001002000280400001600000028000000100000002000
@@ -294,18 +279,23 @@ object frmTZMain: TfrmTZMain
           DisplayWidth = 2
           Visible = False
         end
-        object triggerid: TMTNumericDataFieldEh
+        object triggerid: TMTStringDataFieldEh
           FieldName = 'triggerid'
-          NumericDataType = fdtSmallintEh
-          AutoIncrement = False
+          StringDataType = fdtStringEh
+          DisplayLabel = 'triggerId'
           DisplayWidth = 6
           Visible = False
-          currency = False
-          Precision = 15
+        end
+        object Host: TMTStringDataFieldEh
+          FieldName = 'Host'
+          StringDataType = fdtStringEh
+          DisplayLabel = 'Host'
+          DisplayWidth = 10
+          Size = 50
         end
         object Priority: TMTNumericDataFieldEh
           FieldName = 'Priority'
-          NumericDataType = fdtSmallintEh
+          NumericDataType = fdtIntegerEh
           AutoIncrement = False
           DisplayLabel = 'Priority'
           DisplayWidth = 1
@@ -317,12 +307,7 @@ object frmTZMain: TfrmTZMain
           StringDataType = fdtStringEh
           DisplayLabel = 'Priority'
           DisplayWidth = 11
-          Size = 15
-        end
-        object Host: TMTStringDataFieldEh
-          FieldName = 'Host'
-          StringDataType = fdtStringEh
-          DisplayWidth = 10
+          Size = 30
         end
         object hostid: TMTNumericDataFieldEh
           FieldName = 'hostid'
@@ -336,6 +321,7 @@ object frmTZMain: TfrmTZMain
         object Description: TMTStringDataFieldEh
           FieldName = 'Description'
           StringDataType = fdtStringEh
+          DisplayLabel = 'Description'
           DisplayWidth = 50
           Size = 200
         end
@@ -356,16 +342,19 @@ object frmTZMain: TfrmTZMain
           StringDataType = fdtStringEh
           DisplayWidth = 20
           Visible = False
+          Size = 30
         end
         object Message: TMTStringDataFieldEh
           FieldName = 'Message'
           StringDataType = fdtStringEh
+          DisplayLabel = 'Message'
           DisplayWidth = 20
           Size = 200
         end
         object clock: TMTDateTimeDataFieldEh
           FieldName = 'clock'
           DateTimeDataType = fdtDateTimeEh
+          DisplayLabel = 'Clock'
           DisplayWidth = 18
         end
         object ET: TMTStringDataFieldEh
@@ -377,17 +366,31 @@ object frmTZMain: TfrmTZMain
         object User: TMTStringDataFieldEh
           FieldName = 'User'
           StringDataType = fdtStringEh
+          DisplayLabel = 'User'
           DisplayWidth = 20
+          Size = 50
         end
         object Error: TMTStringDataFieldEh
           FieldName = 'Error'
           StringDataType = fdtStringEh
+          DisplayLabel = 'Error'
           DisplayWidth = 1
+          Size = 200
         end
         object Comments: TMTStringDataFieldEh
           FieldName = 'Comments'
           StringDataType = fdtStringEh
+          DisplayLabel = 'Comments'
           DisplayWidth = 1
+          Size = 200
+        end
+        object step: TMTNumericDataFieldEh
+          FieldName = 'step'
+          NumericDataType = fdtIntegerEh
+          AutoIncrement = False
+          DisplayWidth = 20
+          currency = False
+          Precision = 15
         end
         object iteration: TMTDateTimeDataFieldEh
           FieldName = 'iteration'
@@ -2935,18 +2938,29 @@ object frmTZMain: TfrmTZMain
     Top = 329
   end
   object mmMain: TMainMenu
+    AutoHotkeys = maManual
+    AutoLineReduction = maManual
+    Images = ilTr
     Left = 180
     Top = 273
     object miZabbix: TMenuItem
       Caption = 'Zabbix'
       OnClick = miZabbixClick
     end
+    object miLang: TMenuItem
+      Caption = 'Language'
+      OnClick = miLangClick
+    end
     object miOptions: TMenuItem
       Caption = 'Options'
       OnClick = miOptionsClick
     end
+    object miShowLog: TMenuItem
+      Caption = 'Log'
+      OnClick = miShowLogClick
+    end
     object miRefresh: TMenuItem
-      Caption = 'Resfresh'
+      Caption = 'Refresh'
       OnClick = btnConnectClick
     end
     object miExit: TMenuItem
@@ -2959,7 +2973,7 @@ object frmTZMain: TfrmTZMain
     Left = 544
     Top = 272
     Bitmap = {
-      494C010102000800180010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800340010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       00000000000000000000000000000000000000000000000000000707638F0B0B
       7BAF02020B100000000000000000000000000000000000000000000000000202
@@ -3113,11 +3127,12 @@ object frmTZMain: TfrmTZMain
     end
   end
   object RegPropStorageManEh1: TRegPropStorageManEh
-    Path = '\Software\Alef-E\ZabbixTray\1\'
+    Path = '\Software\Alef-E\ZabbixTray\3\'
     Left = 68
     Top = 328
   end
   object PropStorageEh1: TPropStorageEh
+    Active = False
     Section = 'Main'
     StorageManager = RegPropStorageManEh1
     StoredProps.Strings = (
@@ -3126,8 +3141,8 @@ object frmTZMain: TfrmTZMain
       '<P>.PixelsPerInch'
       '<P>.Top'
       '<P>.Width'
-      'TS_Main.tsTab.g.<P>.Columns.ColumnsIndex'
-      'TS_Main.tsTab.g.<P>.Columns.<ForAllItems>.Width')
+      'g.<P>.Columns.ColumnsIndex'
+      'g.<P>.Columns.<ForAllItems>.Width')
     Left = 68
     Top = 272
   end
@@ -3135,7 +3150,7 @@ object frmTZMain: TfrmTZMain
     Left = 540
     Top = 328
     Bitmap = {
-      494C010107000800100010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C0101070008002C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -3403,6 +3418,7 @@ object frmTZMain: TfrmTZMain
       C003C003C003C003C003C003C003C003C003C003C003C003C003C003C003C003
       C003C003C003C003C003C003C003C003C003C003C003C003C003C003C003C003
       C003C003C003C003C003C003C003C003C003C003C003C003C003C003C003C003
-      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000
+      000000000000}
   end
 end

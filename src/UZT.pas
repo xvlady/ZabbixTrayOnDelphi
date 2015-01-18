@@ -2,7 +2,11 @@ unit UZT;
 
 interface
 
-uses System.Classes, system.json, Graphics;
+uses
+  {$IFDEF USE_DXGETTEXT}
+    JvGnugettext,
+  {$ENDIF USE_DXGETTEXT}
+  System.Classes, system.json, Graphics;
 
 type
   TZt = class (TObject)
@@ -19,8 +23,6 @@ type
     URL:string;
     url_up:string;//Адрес по которому посылать пользователя
     au:string;
-    error:string;
-    errorLong:string;
     lastResult:string;
     lastSender:string;
     constructor Create(const Alogin:string='';const APassword:string=''; const AURL:string='');
@@ -50,11 +52,9 @@ resourcestring
   StrOkEvent='Corrected';
   StrOkOther='Other';
 const
-  StatusT: array [0..6]     of string=(StrNone ,StrInformation, StrWarning, StrAverage, StrHigh, StrDisaster, StrOkSt);
 //StatusHTML: array [0..6] of Integer=($cecece,$d6f6ff      ,$efefcc  ,$ddaaaa  ,$ff8888,$ff0000,$aaffaa);
 //StatusHTML: array [0..6] of Integer=($1F5E1F,$327232      ,$703158  ,$5D1F44  ,$8F3F3F,$762727,$aaffaa);
   StatusHTML: array [0..6] of Integer=($DBDBDB,$D6F6FF      ,$FFF6A5  ,$FFB689  ,$FF9999,$FF3838,$aaffaa);
-  EventMsgT: array [0..5]     of string=(StrAction,StrNotActive, StrInWork, StrQuest, StrOkEvent, StrOkOther);
   EventMsgK: array [0..4]       of char=('!','-','*','?',' ');
   EventMsgC: array [0..5]    of Integer=(clRed,clGray,clBlue,clAqua,clGreen,clGreen);
   STriggerId='triggerid';
@@ -80,22 +80,32 @@ const
 //  .information { background: #D6F6FF !important; }
 //  .not_classified { background: #DBDBDB !important; }
 
+  function TJSONArrayCreate(S:TStrings):TJSONArray;
+  procedure AfterLoc;
+
 var
   StatusC: array [0..6] of Integer;
+  StatusT: array [0..6]     of string=(StrNone ,StrInformation, StrWarning, StrAverage, StrHigh, StrDisaster, StrOkSt);
+  EventMsgT: array [0..5]     of string=(StrAction,StrNotActive, StrInWork, StrQuest, StrOkEvent, StrOkOther);
   //StatusT: array [0..6] of string;
 implementation
 
 uses httpsend, synautil, SysUtils, windows;
 
 resourcestring
-  StrErrorLogin = 'Ошибка соединения с сервером (не верный логин и пароль)';
-  StrErrorConnect = 'Ошибка соединения с сервером';
-  StrErrorConnectOther = 'Ошибка соединения с сервером (нет связи)';
-  StrErrorConnectSum = 'other error';
-  StrErrorConnectOtherSum = 'http ...';
-  StrJSONError = 'Ошибка соединения с сервером (JSON)';
-  StrErrorHttp = 'Ошибка соединения с сервером';
+  StrUnknowResult = 'Unknow result:';
+  StrErrorConnectionData = 'Error Connection Data';
+  StrOtherErrorConnecti = 'Other Error Connection';
+  StrLoginError = 'Login error';
 
+  function TJSONArrayCreate(S:TStrings):TJSONArray;
+  var
+    i:Integer;
+  begin
+    result:=TJSONArray.Create;
+    for I := 0 to s.Count-1 do
+      result.Add(s[i]);
+  end;
 { TZt }
 
 constructor TZt.Create(const Alogin, APassword, AURL: string);
@@ -126,61 +136,46 @@ var
   jo,ji: TJSONObject;
 begin
   result:=nil;
-  errorlong:='';
-  error:='';
   lastSender:='';
   lastResult:='';
   if autintiphication then begin
     if not FConnect then Connected;
     if not FConnect then exit;
   end;
+  ji:=TJSONObject.Create;
   try
-    try
-      ji:=TJSONObject.Create;
-      ji.AddPair('jsonrpc', '2.0');
-      ji.AddPair('method', method);
-      if params<>nil then
+    ji.AddPair('jsonrpc', '2.0');
+    ji.AddPair('method', method);
+    if params<>nil then
 //        ji.AddPair('params',params);
-        ji.AddPair('params',(params.Clone) as TJSONValue);
-      if autintiphication then
-        ji.AddPair('auth', au);
-      ji.AddPair('id', '1');
-      lastSender:=ji.ToString;
-      if post(ji,jo) then begin
-        if jo=nil then begin
-          errorlong:='Http error';
-          error:=StrErrorConnect;
-        end else if (jo.Get(SError)<>nil) then begin
-          jo:=jo.Get(SError).JsonValue as TJSONObject;
-          errorlong:=jo.Get('data').JsonValue.Value;
-          error:=StrErrorLogin;
-        end else if (jo.Get('result')<>nil) then begin
-          lastResult:=jo.Get('result').JsonValue.ToString;
-          result:=jo.Get('result').JsonValue;
-        end else begin
-          lastResult:=jo.ToString;
-          errorlong:=StrErrorConnectSum;
-          error:=StrErrorConnect;
-        end
+      ji.AddPair('params',(params.Clone) as TJSONValue);
+    if autintiphication then
+      ji.AddPair('auth', au);
+    ji.AddPair('id', '1');
+    lastSender:=ji.ToString;
+    if post(ji,jo) then begin
+      if jo=nil then begin
+        lastResult:='nil';
+        raise Exception.Create(StrErrorConnectionData);
+      end else if (jo.Get(SError)<>nil) then begin
+        lastResult:=jo.Get(SError).JsonValue.ToString;
+        jo:=jo.Get(SError).JsonValue as TJSONObject;
+        if autintiphication
+        then raise Exception.Create(StrLoginError+#13#10+jo.Get('data').JsonValue.Value)
+        else raise Exception.Create(jo.Get('data').JsonValue.Value);
+      end else if (jo.Get('result')<>nil) then begin
+        lastResult:=jo.Get('result').JsonValue.ToString;
+        result:=jo.Get('result').JsonValue;
       end else begin
-        errorlong:=StrErrorConnectOtherSum;
-        error:=StrErrorConnectOther;
-      end;
-    except
-      on E: EJSONException do begin
-        errorlong:=E.Message;
-        error:=StrJSONError;
-      end;
-      on E: Exception do begin
-        errorlong:=E.Message;
-        error:=StrErrorHttp;
-      end;
+        lastResult:=jo.ToString;
+        raise Exception.Create(StrUnknowResult+jo.ToString);
+      end
+    end else begin
+      raise Exception.Create(StrOtherErrorConnecti);
     end;
   finally
     ji.Free;
   end;
-  if error<>'' then raise Exception.Create(error+#13#10+errorlong+#13#10+lastSender+#13#10+lastResult);
-
 end;
 
 function TZt.GetEvent(const ja: TJSONArray): TJSONValue;
@@ -224,7 +219,6 @@ end;
 
 function TZt.GetTrigger:TJSONValue;
 var
-  jo: TJSONObject;
   jo2: TJSONObject;
   ja: TJSONArray;
 begin
@@ -330,13 +324,30 @@ begin
   Connected;
 end;
 
+procedure AfterLoc;
+begin
+  StatusT[0]:=StrNone;
+  StatusT[1]:=StrInformation;
+  StatusT[2]:= StrWarning;
+  StatusT[3]:= StrAverage;
+  StatusT[4]:= StrHigh;
+  StatusT[5]:= StrDisaster;
+  StatusT[6]:= StrOkSt;
+  EventMsgT[0]:=StrAction;
+  EventMsgT[1]:=StrNotActive;
+  EventMsgT[2]:= StrInWork;
+  EventMsgT[3]:= StrQuest;
+  EventMsgT[4]:= StrOkEvent;
+  EventMsgT[5]:= StrOkOther;
+end;
+
 function ColorToRGB(Color:TColor):TColor;
 var
   r, g, b: Byte;
 begin
-  b    := Color;
-  g    := Color shr 8;
-  r    := Color shr 16;
+  b    := Color        mod 256;
+  g    := Color shr 8  mod 256;
+  r    := Color shr 16 mod 256;
   result:=B shl 16 or G shl 8 or R;
 end;
 var

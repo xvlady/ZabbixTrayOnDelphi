@@ -1,0 +1,371 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-01-18 23:59\n"
+"PO-Revision-Date: 2015-01-15 22:44\n"
+"Last-Translator: Somebody <your.email@address.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: dxgettext 1.2.2\n"
+
+#. frmTZMain..g..EmptyDataInfo.Text
+#: UMain.dfm:60 
+msgid "Ok!    "
+msgstr ""
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Priority..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Priority..DisplayLabel
+#. frmTZMain..qryMem..MemTableData..DataStruct..priorityT..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:76  UMain.dfm:297 UMain.dfm:300 UMain.dfm:308 USetMsg.dfm:119
+msgid "Priority"
+msgstr ""
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Error..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Error..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:84  UMain.dfm:374 UMain.dfm:376 USetMsg.dfm:142
+msgid "Error"
+msgstr ""
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Host..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Host..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:99  UMain.dfm:290 UMain.dfm:292 USetMsg.dfm:150
+msgid "Host"
+msgstr ""
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Description..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Description..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:106  UMain.dfm:322 UMain.dfm:324 USetMsg.dfm:157
+msgid "Description"
+msgstr ""
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Message..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Message..DisplayLabel
+#. frmSetMsg..g......FieldName
+#. frmSetMsg..cbbMSG..BoundLabel.Caption
+#: UMain.dfm:113  UMain.dfm:348 UMain.dfm:350 USetMsg.dfm:163 USetMsg.dfm:222
+msgid "Message"
+msgstr ""
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Comments..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..Comments..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:147  UMain.dfm:381 UMain.dfm:383 USetMsg.dfm:197
+msgid "Comments"
+msgstr ""
+
+#. frmTZMain..g......FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..User..FieldName
+#. frmTZMain..qryMem..MemTableData..DataStruct..User..DisplayLabel
+#. frmSetMsg..g......FieldName
+#: UMain.dfm:155  UMain.dfm:367 UMain.dfm:369 USetMsg.dfm:205
+msgid "User"
+msgstr ""
+
+#. frmTZMain..pmTray..miOpen..Caption
+#: UMain.dfm:247 
+msgid "Open"
+msgstr ""
+
+#. frmTZMain..pmTray..miRefreshPM..Caption
+#. frmTZMain..mmMain..miRefresh..Caption
+#: UMain.dfm:254  UMain.dfm:2963
+msgid "Refresh"
+msgstr ""
+
+#. frmTZMain..pmTray..miExitPM..Caption
+#. frmTZMain..mmMain..miExit..Caption
+#: UMain.dfm:258  UMain.dfm:2967
+msgid "Exit"
+msgstr ""
+
+#. frmTZMain..qryMem..MemTableData..DataStruct..triggerid..DisplayLabel
+#: UMain.dfm:285 
+msgid "triggerId"
+msgstr ""
+
+#. frmTZMain..qryMem..MemTableData..DataStruct..Lastchange..DisplayLabel
+#: UMain.dfm:331 
+msgid "Last Change"
+msgstr ""
+
+#. frmTZMain..qryMem..MemTableData..DataStruct..T..DisplayLabel
+#. frmTZMain..qryMem..MemTableData..DataStruct..ET..DisplayLabel
+#: UMain.dfm:337  UMain.dfm:363
+msgid "Time"
+msgstr ""
+
+#. frmTZMain..qryMem..MemTableData..DataStruct..clock..DisplayLabel
+#: UMain.dfm:357 
+msgid "Clock"
+msgstr ""
+
+#. frmTZMain..qryMem..MemTableData..DataStruct..step..FieldName
+#: UMain.dfm:388 
+msgid "step"
+msgstr ""
+
+#. frmTZMain..mmMain..miLang..Caption
+#: UMain.dfm:2951 
+msgid "Language"
+msgstr ""
+
+#. frmTZMain..mmMain..miOptions..Caption
+#. frmOptions..Caption
+#: UMain.dfm:2955  UOptions.dfm:5
+msgid "Options"
+msgstr ""
+
+#. frmTZMain..mmMain..miShowLog..Caption
+#: UMain.dfm:2959  UMain.pas:437 UMain.pas:439
+msgid "Log"
+msgstr ""
+
+#. frmTZMain..pmG..miSetMSG..Caption
+#: UMain.dfm:3125 
+msgid "SetMessage"
+msgstr ""
+
+#. frmOptions..edtURL..BoundLabel.Caption
+#: UOptions.dfm:38 
+msgid "Zabbix root URL"
+msgstr ""
+
+#. frmOptions..edtLogin..TextHint
+#: UOptions.dfm:63 
+msgid "UserZabbix"
+msgstr ""
+
+#. frmOptions..edtLogin..BoundLabel.Caption
+#: UOptions.dfm:66 
+msgid "Login"
+msgstr ""
+
+#. frmOptions..edtPswd..BoundLabel.Caption
+#: UOptions.dfm:93 
+msgid "Password"
+msgstr ""
+
+#. frmOptions..chkOptions..Caption
+#: UOptions.dfm:109 
+msgid "View menu Options"
+msgstr ""
+
+#. frmOptions..chkEventData..Caption
+#: UOptions.dfm:120 
+msgid "Set Ack"
+msgstr ""
+
+#. frmOptions..cbbShowMain..BoundLabel.Caption
+#: UOptions.dfm:133 
+msgid "Show MainForm if find events"
+msgstr ""
+
+#. frmOptions..pnlEditOk..btnOk..Caption
+#. frmSetMsg..pnlEditOk..btnOk..Caption
+#: UOptions.dfm:173  USetMsg.dfm:69
+msgid "&Ok"
+msgstr ""
+
+#. frmOptions..pnlEditOk..btnCancel..Caption
+#. frmSetMsg..pnlEditOk..btnCancel..Caption
+#: UOptions.dfm:187  USetMsg.dfm:83
+msgid "&Cancel"
+msgstr ""
+
+#. frmOptions..edtURLP..BoundLabel.Caption
+#: UOptions.dfm:212 
+msgid "URL for click menu Zabbix (default = Zabbix root URL)"
+msgstr ""
+
+#. frmOptions..cbbShowBable..BoundLabel.Caption
+#: UOptions.dfm:230 
+msgid "Show popup message"
+msgstr ""
+
+#. frmOptions..cbbShowStart..BoundLabel.Caption
+#: UOptions.dfm:261 
+msgid "Show Main Form on Start if have events"
+msgstr ""
+
+#. frmOptions..mmoTempl..BoundLabel.Caption
+#: UOptions.dfm:300 
+msgid "Template Ack Message from Event"
+msgstr ""
+
+#. frmOptions..chkAutorun..Caption
+#: UOptions.dfm:317 
+msgid "Autorun"
+msgstr ""
+
+#. frmOptions..edtInterval..BoundLabel.Caption
+#: UOptions.dfm:338 
+msgid "Interval"
+msgstr ""
+
+#. frmSetMsg..Caption
+#: USetMsg.dfm:5 
+msgid "Set Event Message"
+msgstr ""
+
+#. frmSetMsg..cbbAddEventType..BoundLabel.Caption
+#: USetMsg.dfm:29 
+msgid "Status"
+msgstr ""
+
+#. Programmer's name for it: StrStartEditOptions
+#: UMain.pas:110 
+msgid "Start edit Options? (or exit)"
+msgstr ""
+
+#. Programmer's name for it: StrNotFond
+#: UMain.pas:111 
+msgid "Not fond!"
+msgstr ""
+
+#. Programmer's name for it: StrD
+#: UMain.pas:112 
+msgid "d"
+msgstr ""
+
+#. Programmer's name for it: StrH
+#: UMain.pas:113 
+msgid "h"
+msgstr ""
+
+#. Programmer's name for it: StrM
+#: UMain.pas:114 
+msgid "m"
+msgstr ""
+
+#. Programmer's name for it: StrNoConnection
+#: UMain.pas:115 
+msgid "No Connection"
+msgstr ""
+
+#. Programmer's name for it: StrDontOpenRegistry
+#: UOptions.pas:48 
+msgid "Don't Open Registry Key "
+msgstr ""
+
+#. Programmer's name for it: StrCallMe
+#: UOptions.pas:49 
+msgid "Call me"
+msgstr ""
+
+#. Programmer's name for it: StrThisIsNoProblem
+#: UOptions.pas:50 
+msgid "This is no problem"
+msgstr ""
+
+#. Programmer's name for it: StrIDoThisTask
+#: UOptions.pas:51 
+msgid "I do this task"
+msgstr ""
+
+#. Programmer's name for it: StrWaitNextEvents
+#: UOptions.pas:52 
+msgid "Wait next events"
+msgstr ""
+
+#. Programmer's name for it: StrOk
+#: UOptions.pas:53 
+msgid "Ok"
+msgstr ""
+
+#. Адрес по которому посылать пользователя
+#. Programmer's name for it: StrNone
+#: UZT.pas:41 
+msgid "None"
+msgstr ""
+
+#. Programmer's name for it: StrInformation
+#: UZT.pas:42 
+msgid "Information"
+msgstr ""
+
+#. Programmer's name for it: StrWarning
+#: UZT.pas:43 
+msgid "Warning"
+msgstr ""
+
+#. Programmer's name for it: StrAverage
+#: UZT.pas:44 
+msgid "Average"
+msgstr ""
+
+#. Programmer's name for it: StrHigh
+#: UZT.pas:45 
+msgid "High"
+msgstr ""
+
+#. Programmer's name for it: StrDisaster
+#: UZT.pas:46 
+msgid "Disaster"
+msgstr ""
+
+#. Programmer's name for it: StrAction
+#: UZT.pas:48 
+msgid "Requires user action"
+msgstr ""
+
+#. Programmer's name for it: StrNotActive
+#: UZT.pas:49 
+msgid "False Alarm"
+msgstr ""
+
+#. Programmer's name for it: StrInWork
+#: UZT.pas:50 
+msgid "In Progress"
+msgstr ""
+
+#. Programmer's name for it: StrQuest
+#: UZT.pas:51 
+msgid "Specified"
+msgstr ""
+
+#. Programmer's name for it: StrOkEvent
+#: UZT.pas:52 
+msgid "Corrected"
+msgstr ""
+
+#. Programmer's name for it: StrOkOther
+#: UZT.pas:53 
+msgid "Other"
+msgstr ""
+
+#. Programmer's name for it: StrUnknowResult
+#: UZT.pas:96 
+msgid "Unknow result:"
+msgstr ""
+
+#. Programmer's name for it: StrErrorConnectionData
+#: UZT.pas:97 
+msgid "Error Connection Data"
+msgstr ""
+
+#. Programmer's name for it: StrOtherErrorConnecti
+#: UZT.pas:98 
+msgid "Other Error Connection"
+msgstr ""
+
+#. Programmer's name for it: StrLoginError
+#: UZT.pas:99 
+msgid "Login error"
+msgstr ""

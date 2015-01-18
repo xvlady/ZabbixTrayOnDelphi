@@ -1,0 +1,24 @@
+Index: JvGnugettext.pas
+===================================================================
+--- JvGnugettext.pas	(revision 71)
++++ JvGnugettext.pas	(working copy)
+@@ -1592,6 +1592,19 @@
+       end;
+     end;
+   end;
++{$IFDEF dx_SupportsResources}
++  for i:=0 to FileLocator.FResourceList.Count-1 do begin
++    filename:=FileLocator.FResourceList[i];
++    j:=pos('LC_MESSAGES',filename);
++    if j<>0 then begin
++      langcode:=copy(filename, 1,j-2);
++      j:=Pos('\',langcode);
++      langcode:=copy(langcode, j+1,5);
++      if list.IndexOf(langcode)=-1 then
++        list.Add(langcode);
++    end;
++  end;
++{$ENDIF dx_SupportsResources}
+ end;
+ 
+ procedure TDomain.SetFilename(const filename: FilenameString);

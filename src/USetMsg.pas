@@ -2,12 +2,15 @@ unit USetMsg;
 
 interface
 
+{$I DEFTEXT.inc}
+
 uses
-  Vcl.Forms, UMain, types, Vcl.Graphics, windows,
-  Vcl.Dialogs, Vcl.StdCtrls, sEdit, sComboBox,
-  sSkinProvider, sButton, Vcl.ExtCtrls, sPanel, DBGridEhGrouping, ToolCtrlsEh,
-  DBGridEhToolCtrls, DynVarsEh, GridsEh, DBAxisGridsEh, DBGridEh, Vcl.Controls,
-  System.Classes, PropFilerEh, PropStorageEh, Vcl.ComCtrls, sComboBoxes;
+  Vcl.Forms, UMain,
+  types, Vcl.Graphics, windows,
+  DBGridEhGrouping, ToolCtrlsEh,
+  DBGridEhToolCtrls, DynVarsEh, PropFilerEh, PropStorageEh, sSkinProvider,
+  GridsEh, DBAxisGridsEh, DBGridEh, Vcl.StdCtrls, sButton, Vcl.Controls,
+  Vcl.ExtCtrls, sPanel, System.Classes, sComboBox;
 
 type
 //  TsComboBox = class(sComboBox.TsComboBox)
@@ -29,7 +32,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure cbbMSGDrawItem(Control: TWinControl; Index: Integer; Rect: TRect;
       State: TOwnerDrawState);
-    procedure cbbMSGChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,7 +41,7 @@ type
 implementation
 
 {$R *.dfm}
-uses UZT, SysUtils,Messages;
+uses UZT, SysUtils,Messages{$IFDEF USE_DXGETTEXT},JvGnugettext {$ENDIF USE_DXGETTEXT};
 
 procedure TfrmSetMsg.cbbAddEventTypeDrawItem(Control: TWinControl; Index: Integer;
   Rect: TRect; State: TOwnerDrawState);
@@ -83,14 +85,6 @@ begin
   end;
 end;
 
-var
-  EndL: integer;
-
-procedure TfrmSetMsg.cbbMSGChange(Sender: TObject);
-begin
-  //AutoInsertComboBoxItem(Sender as TsComboBox, EndL);
-end;
-
 procedure TfrmSetMsg.cbbMSGDrawItem(Control: TWinControl; Index: Integer;
   Rect: TRect; State: TOwnerDrawState);
 var
@@ -118,11 +112,12 @@ var
 begin
   for i := Low(EventMsgK) to High(EventMsgK) do
     cbbAddEventType.Items.Add('"'+EventMsgK[i]+'" - '+EventMsgT[i]);
-  cbbAddEventType.Items.add(EventMsgT[i]);
+  cbbAddEventType.Items.add(EventMsgT[High(EventMsgT)]);
   cbbAddEventType.ItemIndex:=High(EventMsgT);
   cbbMSG.Items.AddStrings(frmTZMain.EventTemplates);
   //cbbMSG.DroppedDown := True;
 //  cbb1.Perform(CB_SHOWDROPDOWN, 1, 0);
+  TranslateComponent(self);
 end;
 
 procedure TfrmSetMsg.gDblClick(Sender: TObject);

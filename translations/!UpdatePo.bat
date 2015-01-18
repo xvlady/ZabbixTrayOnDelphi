@@ -1,0 +1,2 @@
+call UpdatePo.bat
+pause

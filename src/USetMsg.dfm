@@ -59,9 +59,6 @@ object frmSetMsg: TfrmSetMsg
     BevelOuter = bvNone
     TabOrder = 3
     SkinData.SkinSection = 'PANEL'
-    ExplicitLeft = -146
-    ExplicitTop = 243
-    ExplicitWidth = 781
     object btnOk: TsButton
       AlignWithMargins = True
       Left = 492
@@ -69,13 +66,12 @@ object frmSetMsg: TfrmSetMsg
       Width = 107
       Height = 31
       Align = alRight
-      Caption = '&'#1054'k'
+      Caption = '&Ok'
       ImageIndex = 10
       Images = DMImg.ilBtn16
       ModalResult = 1
       TabOrder = 0
       SkinData.SkinSection = 'BUTTON'
-      ExplicitLeft = 558
     end
     object btnCancel: TsButton
       AlignWithMargins = True
@@ -84,13 +80,12 @@ object frmSetMsg: TfrmSetMsg
       Width = 107
       Height = 31
       Align = alRight
-      Caption = #1054'&'#1090#1084#1077#1085#1072
+      Caption = '&Cancel'
       ImageIndex = 11
       Images = DMImg.ilBtn16
       ModalResult = 2
       TabOrder = 1
       SkinData.SkinSection = 'BUTTON'
-      ExplicitTop = -1
     end
   end
   object g: TDBGridEh
@@ -142,10 +137,9 @@ object frmSetMsg: TfrmSetMsg
         Width = 81
       end
       item
-        Alignment = taRightJustify
         DynProps = <>
         EditButtons = <>
-        FieldName = 'User'
+        FieldName = 'Error'
         Footers = <>
         Width = 162
         InRowLinePos = 1
@@ -205,9 +199,10 @@ object frmSetMsg: TfrmSetMsg
         Width = 65
       end
       item
+        Alignment = taRightJustify
         DynProps = <>
         EditButtons = <>
-        FieldName = 'Error'
+        FieldName = 'User'
         Footers = <>
         Width = 65
         InRowLinePos = 1
@@ -245,7 +240,6 @@ object frmSetMsg: TfrmSetMsg
     ItemIndex = -1
     ParentFont = False
     TabOrder = 2
-    OnChange = cbbMSGChange
     OnDrawItem = cbbMSGDrawItem
   end
   object sSkinProvider1: TsSkinProvider

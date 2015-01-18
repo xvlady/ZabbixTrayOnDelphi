@@ -2,11 +2,12 @@ unit UOptions;
 
 interface
 
+{$I DEFTEXT.inc}
+
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, sCheckBox, sSkinProvider,
-  sEdit, sComboBox, sButton, Vcl.ExtCtrls, sPanel, Vcl.ComCtrls, sComboBoxes,
-  sMemo, sSpinEdit;
+  Vcl.Forms, windows, sysutils,
+  sSpinEdit, sSkinProvider, Vcl.StdCtrls, sMemo, sButton, Vcl.Controls,
+  Vcl.ExtCtrls, sPanel, sComboBox, sCheckBox, System.Classes, sEdit;
 
 type
   TfrmOptions = class(TForm)
@@ -41,7 +42,15 @@ implementation
 
 {$R *.dfm}
 
-uses uzt, System.IniFiles, umain, Registry;
+uses uzt, System.IniFiles, umain, Registry {$IFDEF USE_DXGETTEXT},JvGnugettext {$ENDIF USE_DXGETTEXT};
+
+resourcestring
+  StrDontOpenRegistry = 'Don''t Open Registry Key ';
+  StrCallMe = 'Call me';
+  StrThisIsNoProblem = 'This is no problem';
+  StrIDoThisTask = 'I do this task';
+  StrWaitNextEvents = 'Wait next events';
+  StrOk = 'Ok';
 
 procedure TfrmOptions.btnCancelClick(Sender: TObject);
 begin
@@ -58,9 +67,9 @@ begin
     reg := TRegistry.Create();
     try
       reg.RootKey := HKEY_CURRENT_USER;
-      if reg.OpenKey('\Software\Microsoft\Windows\CurrentVersion\Run',True)
+      if reg.OpenKey(SRegPathAutoRun,True)
       then reg.writeString('ZabbixTray',ParamStr(0))
-      else raise Exception.Create('Don''t Open Key \Software\Microsoft\Windows\CurrentVersion\Run');
+      else raise Exception.Create(StrDontOpenRegistry+SRegPathAutoRun);
       reg.closekey();
     finally
       reg.Free;
@@ -70,7 +79,7 @@ begin
       reg := TRegistry.Create(KEY_READ);
       try
         reg.RootKey := HKEY_CURRENT_USER;
-        reg.OpenKeyReadOnly('\Software\Microsoft\Windows\CurrentVersion\Run');
+        reg.OpenKeyReadOnly(SRegPathAutoRun);
         if reg.ReadString('ZabbixTray')='' then chkAutorun.Checked:=False;
         reg.closekey();
       finally
@@ -83,7 +92,7 @@ begin
       reg := TRegistry.Create();
       try
         reg.RootKey := HKEY_CURRENT_USER;
-        if reg.OpenKey('\Software\Microsoft\Windows\CurrentVersion\Run',false) then
+        if reg.OpenKey(SRegPathAutoRun,false) then
           reg.DeleteValue('ZabbixTray');
         reg.closekey();
       finally
@@ -95,20 +104,21 @@ begin
 
   ini := TIniFile.Create(frmTZMain.inifile);
   try
-    ini.WriteString ('Main','URL'             ,edtURL.Text           );
-    ini.WriteString ('Main','Login'           ,edtLogin.Text         );
-    ini.WriteString ('Main','PSWD'            ,edtPswd.Text          );
-    ini.WriteString ('Main','URLP'            ,edtURLP.Text          );
-    ini.WriteBool   ('View','ShowMenuOptions' ,chkOptions.Checked    );
-    ini.WriteBool   ('View','ShowMenuSetMSG'  ,chkEventData.Checked  );
-    ini.WriteInteger('Alarm','ShowFormOnStart',cbbShowStart.ItemIndex);
-    ini.WriteInteger('Alarm','ShowMainForm'   ,cbbShowMain.ItemIndex );
-    ini.WriteInteger('Alarm','ShowPopupMSG'   ,cbbShowBable.ItemIndex);
-    ini.WriteInteger('Main','Interval'        ,edtInterval.Value     );
-    ini.WriteBool   ('Main','Autorun'         ,chkAutorun.Checked    );
-    ini.EraseSection('EventTemplate');
+    ini.WriteString (SIniSectionMain ,'URL'             ,edtURL.Text           );
+    ini.WriteString (SIniSectionMain ,'Login'           ,edtLogin.Text         );
+    ini.WriteString (SIniSectionMain ,'PSWD'            ,edtPswd.Text          );
+    ini.WriteString (SIniSectionMain ,'URLP'            ,edtURLP.Text          );
+    ini.WriteBool   (SIniSectionView ,'ShowMenuOptions' ,chkOptions.Checked    );
+    ini.WriteBool   (SIniSectionView ,'ShowMenuSetMSG'  ,chkEventData.Checked  );
+//    ini.WriteString (SIniSectionView 'Main' ,'Lang'           ,chkLang.text    );{ TODO -oxvv -c : options add Lang 14.01.2015 15:44:13 }
+    ini.WriteInteger(SIniSectionAlarm,'ShowFormOnStart',cbbShowStart.ItemIndex);
+    ini.WriteInteger(SIniSectionAlarm,'ShowMainForm'   ,cbbShowMain.ItemIndex );
+    ini.WriteInteger(SIniSectionAlarm,'ShowPopupMSG'   ,cbbShowBable.ItemIndex);
+    ini.WriteInteger(SIniSectionMain ,'Interval'        ,edtInterval.Value     );
+    ini.WriteBool   (SIniSectionMain ,'Autorun'         ,chkAutorun.Checked    );
+    ini.EraseSection(SIniSectionEventTemplate);
     for i := 0 to mmoTempl.Lines.Count-1 do
-      ini.WriteString('EventTemplate','T'+IntToStr(i),mmoTempl.Lines[i]);
+      ini.WriteString(SIniSectionEventTemplate,'T'+IntToStr(i),mmoTempl.Lines[i]);
   finally
     ini.Free;
   end;
@@ -139,33 +149,34 @@ begin
     cbbShowStart.Items.Add(StatusT[i]);
   ini := TIniFile.Create(frmTZMain.inifile);
   try
-    edtURL.Text           :=ini.ReadString ('Main','URL'             ,''  );
-    edtLogin.Text         :=ini.ReadString ('Main','Login'           ,''  );
-    edtPswd.Text          :=ini.ReadString ('Main','PSWD'            ,''  );
-    edtURLP.Text          :=ini.ReadString ('Main','URLP'            ,''  );
-    edtInterval.Value     :=ini.ReadInteger('Main','Interval'        ,1   );
-    chkAutorun.Checked    :=ini.ReadBool   ('Main','Autorun'         ,True);
-    chkOptions.Checked    :=ini.ReadBool   ('View','ShowMenuOptions' ,True);
-    chkEventData.Checked  :=ini.ReadBool   ('View','ShowMenuSetMSG'  ,True);
-    cbbShowStart.ItemIndex:=ini.ReadInteger('Alarm','ShowFormOnStart',2   );
-    cbbShowMain.ItemIndex :=ini.ReadInteger('Alarm','ShowMainForm'   ,3   );
-    cbbShowBable.ItemIndex:=ini.ReadInteger('Alarm','ShowPopupMSG'   ,1   );
-    ini.ReadSectionValues('EventTemplate',mmoTempl.Lines);
+    edtURL.Text           :=ini.ReadString (SIniSectionMain ,'URL'             ,''  );
+    edtLogin.Text         :=ini.ReadString (SIniSectionMain ,'Login'           ,''  );
+    edtPswd.Text          :=ini.ReadString (SIniSectionMain ,'PSWD'            ,''  );
+    edtURLP.Text          :=ini.ReadString (SIniSectionMain ,'URLP'            ,''  );
+    chkOptions.Checked    :=ini.ReadBool   (SIniSectionView ,'ShowMenuOptions' ,True);
+    chkEventData.Checked  :=ini.ReadBool   (SIniSectionView ,'ShowMenuSetMSG'  ,True);
+//                                            SIniSectionView
+    cbbShowStart.ItemIndex:=ini.ReadInteger(SIniSectionAlarm,'ShowFormOnStart' ,2   );
+    cbbShowMain.ItemIndex :=ini.ReadInteger(SIniSectionAlarm,'ShowMainForm'    ,3   );
+    cbbShowBable.ItemIndex:=ini.ReadInteger(SIniSectionAlarm,'ShowPopupMSG'    ,1   );
+    edtInterval.Value     :=ini.ReadInteger(SIniSectionMain ,'Interval'        ,1   );
+    chkAutorun.Checked    :=ini.ReadBool   (SIniSectionMain ,'Autorun'         ,True);
+    ini.ReadSectionValues(SIniSectionEventTemplate,mmoTempl.Lines);
     for I := 0 to mmoTempl.Lines.Count-1 do
       mmoTempl.Lines[i]:=mmoTempl.Lines.ValueFromIndex[i];
     if mmoTempl.Lines.Count=0 then
       mmoTempl.Lines.Text   :=
-        '! Call me'+#13#10+
-        '- Don''t porblem'+#13#10+
-        '* I do this task'+#13#10+
-        '? Wait next events'+#13#10+
-        'Ok';
+        '! '+StrCallMe+#13#10+
+        '- '+StrThisIsNoProblem+#13#10+
+        '* '+StrIDoThisTask+#13#10+
+        '? '+StrWaitNextEvents+#13#10+
+        StrOk;
     if chkAutorun.Checked then begin
       try
         reg := TRegistry.Create(KEY_READ);
         try
           reg.RootKey := HKEY_CURRENT_USER;
-          reg.OpenKeyReadOnly('\Software\Microsoft\Windows\CurrentVersion\Run');
+          reg.OpenKeyReadOnly(SRegPathAutoRun);
           if reg.ReadString('ZabbixTray')='' then chkAutorun.Checked:=False;
           reg.closekey();
         finally
@@ -181,6 +192,7 @@ begin
   finally
     ini.Free;
   end;
+  TranslateComponent(self);
 end;
 
 end.
